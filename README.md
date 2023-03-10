@@ -18,7 +18,7 @@ npm i
 
 ## Build
 
-This will run ergogen and build all of the output files.
+This will run Ergogen and build all of the output files.
 
 ```bash
 npm run build
@@ -31,3 +31,12 @@ This will watch the `config.yaml` file and the `footprints` directory and run th
 ```bash
 npm run watch
 ```
+
+## Thanks
+
+* [Ergogen](https://github.com/ergogen/ergogen)
+* [Absolem Club Discord](https://discord.gg/nbKcAZB)
+* [V4 Migration Guide](https://github.com/tsteffek/Ergogen-V4-Migration-Guide)
+* [Claw](https://gitlab.com/Audijo/keyboard)
+* [MrKeyboard](https://github.com/MrCarney/mrkeyboard)
+* [Corne keyboard](https://github.com/foostan/crkbd)
