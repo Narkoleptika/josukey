@@ -2,6 +2,10 @@
 
 A keyboard for Joey
 
+<p align="center">
+    <img src="./images/josukey.png" width="100%">
+</p>
+
 ## Getting Started
 
 Get my files on your computer 😏 and install dependencies.
