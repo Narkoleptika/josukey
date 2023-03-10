@@ -1,0 +1,193 @@
+points:
+    key.padding: cy
+    zones:
+        main:
+            rows:
+                bottom:
+                home:
+                top:
+            columns:
+                pinky:
+                ring:
+                    key:
+                        splay: -8
+                        spread: cx+4
+                        stagger: 6
+                middle:
+                    key:
+                        splay: -4
+                        spread: cx+2
+                        stagger: -1
+                index:
+                    key:
+                        splay: -16
+                        spread: cx+4
+                        stagger: -4
+                inner:
+                    key:
+                        spread: cx+2
+                        stagger: -2
+        thumb:
+            anchor:
+                ref: main_index_bottom
+                shift: [0, -cy-8]
+            rows.home:
+            columns:
+                inner:
+                middle:
+                    key:
+                        rotate: -16
+                        spread: cx+4
+                        stagger: -3
+                outer.key:
+                    rotate: -32
+                    spread: cx+2
+                    stagger: -9
+outlines:
+    _raw:
+        -   what: rectangle
+            where: true
+            size: [cx, cy]
+        -   what: polygon
+            points:
+            -   ref: thumb_outer_home
+                shift: [0.6cx, 0.6cy]
+            -   ref: thumb_outer_home
+                shift: [0.6cx, -0.6cy]
+            -   ref: thumb_middle_home
+                shift: [0.6cx, -0.6cy]
+            -   ref: thumb_middle_home
+                shift: [-0.6cx, -0.6cy]
+            -   ref: thumb_inner_home
+                shift: [-0.6cx, -0.6cy]
+            -   ref: thumb_inner_home
+                shift: [-0.6cx, 0.6cy]
+            -   ref: main_middle_bottom
+                shift: [0.6cx, -0.6cy]
+            -   ref: main_pinky_bottom
+                shift: [0.6cx, -0.6cy]
+            -   ref: main_pinky_bottom
+                shift: [-0.6cx, -0.6cy]
+            -   ref: main_pinky_top
+                shift: [-0.6cx, 0.6cy]
+            -   ref: main_ring_top
+                shift: [-0.6cx, 0.6cy]
+            -   ref: main_middle_top
+                shift: [-0.6cx, 0.6cy]
+            -   ref: main_middle_top
+                shift: [0.6cx, 0.6cy]
+            -   ref: main_index_top
+                shift: [-0.6cx, 0.6cy]
+            -   ref: main_index_top
+                shift: [0.6cx, 0.6cy]
+            -   ref: main_inner_top
+                shift: [0.6cx, 0.6cy]
+            -   ref: main_inner_top
+                shift: [1cx, 0.4cy]
+            -   ref: main_inner_top
+                shift: [1.6cx, 0cy]
+            -   ref: main_inner_top
+                shift: [1.8cx, -0.2cy]
+            -   ref: main_inner_top
+                shift: [2cx, -0.4cy]
+            -   ref: main_inner_top
+                shift: [2.2cx, -0.7cy]
+            -   ref: main_inner_top
+                shift: [2.4cx, -1cy]
+    _cutout:
+        -   what: outline
+            name: _raw
+            fillet: 2
+    _keycaps:
+        -   what: rectangle
+            where: true
+            size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+    preview:
+        -   what: outline
+            name: _cutout
+            operation: stack
+        -   what: outline
+            name: _keycaps
+            operation: stack
+pcbs.josukey:
+    outlines:
+        main.outline: _cutout
+        keycaps:
+            outline: _keycaps
+            layer: Eco1.User
+    footprints:
+        choc:
+            what: choc
+            where: true
+            params:
+                designator: S
+                keycaps: true
+                reverse: true
+                hotswap: true
+                from: "{{name}}"
+                to: GND
+        promicro:
+            what: promicro_pretty
+            where:
+                ref: main_inner_bottom
+            adjust:
+                shift: [26, 6.2]
+                rotate: -90
+            params:
+                # left
+                P1:  main_index_top
+                P0:  main_middle_top
+                # GND
+                # GND
+                P2:  main_ring_top
+                P3:  main_middle_home
+                P4:  main_ring_home
+                P5:  main_middle_bottom
+                P6:  main_ring_bottom
+                P7:  main_pinkie_top
+                P8:  main_pinkie_home
+                P9:  main_pinkie_bottom
+                # right
+                # RAW
+                # GND
+                # RST
+                # VCC
+                P21: main_inner_top
+                P20: main_inner_home
+                P19: main_index_home
+                P18: main_index_bottom
+                P15: main_inner_bottom
+                P14: thumb_far_home
+                P16: thumb_home_home
+                P10: thumb_near_home
+        bat:
+            what: bat
+            where:
+                ref: main_inner_bottom
+                shift: [35, -15]
+                rotate: 180
+            params:
+                neg: GND
+        pcm12:
+            what: pcm12
+            where:
+                ref: main_inner_home
+                shift: [41, 0]
+                rotate: 90
+            params:
+                reverse: true
+                from: pos
+                to: RAW
+        wuerth_434121025816:
+            what: wuerth_434121025816
+            where:
+                ref: main_inner_bottom
+                shift: [40, 0]
+                rotate: 90
+            params:
+                reverse: true
+                r1: RST
+                r2: GND
+
+
+

@@ -1,0 +1,21 @@
+{
+    "name": "josukey",
+    "description": "A keyboard for Joey",
+    "version": "0.0.1",
+    "author": "Joey <joe@joey.codes>",
+    "license": "MIT",
+    "private": true,
+    "homepage": "https://github.com/Narkoleptika/josukey",
+    "repository": "github:Narkoleptika/josukey",
+    "bugs": "https://github.com/Narkoleptika/josukey/issues",
+    "scripts": {
+        "build": "ergogen --clean .",
+        "watch": "nodemon --ext .js,.yaml --watch footprints --watch config.yaml --exec npm run build"
+    },
+    "dependencies": {
+        "ergogen": "^4.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.21"
+    }
+}
