@@ -34,7 +34,7 @@ points:
             rows.home:
             columns:
                 inner:
-                middle:
+                home:
                     key:
                         rotate: -16
                         spread: cx+4
@@ -44,19 +44,17 @@ points:
                     spread: cx+2
                     stagger: -9
 outlines:
-    _raw:
-        -   what: rectangle
-            where: true
-            size: [cx, cy]
+    _board_outline:
         -   what: polygon
+            fillet: 2
             points:
             -   ref: thumb_outer_home
                 shift: [0.6cx, 0.6cy]
             -   ref: thumb_outer_home
                 shift: [0.6cx, -0.6cy]
-            -   ref: thumb_middle_home
+            -   ref: thumb_home_home
                 shift: [0.6cx, -0.6cy]
-            -   ref: thumb_middle_home
+            -   ref: thumb_home_home
                 shift: [-0.6cx, -0.6cy]
             -   ref: thumb_inner_home
                 shift: [-0.6cx, -0.6cy]
@@ -94,29 +92,38 @@ outlines:
                 shift: [2.2cx, -0.7cy]
             -   ref: main_inner_top
                 shift: [2.4cx, -1cy]
-    _cutout:
-        -   what: outline
-            name: _raw
-            fillet: 2
-    _keycaps:
+    _keycap_outlines:
         -   what: rectangle
+            fillet: 2
             where: true
             size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
     preview:
         -   what: outline
-            name: _cutout
+            name: _board_outline
             operation: stack
         -   what: outline
-            name: _keycaps
+            name: _keycap_outlines
             operation: stack
+
 pcbs.josukey:
     outlines:
-        main.outline: _cutout
+        main.outline: _board_outline
         keycaps:
-            outline: _keycaps
+            outline: _keycap_outlines
             layer: Eco1.User
     footprints:
         choc:
+            what: choc
+            where: true
+            adjust:
+                rotate: 180
+            params:
+                designator: S
+                keycaps: true
+                reverse: true
+                from: "{{name}}"
+                to: GND
+        choc_hotswap:
             what: choc
             where: true
             params:
@@ -129,51 +136,53 @@ pcbs.josukey:
         promicro:
             what: promicro_pretty
             where:
-                ref: main_inner_bottom
+                ref: main_inner_home
             adjust:
-                shift: [26, 6.2]
+                shift: [22, -1]
                 rotate: -90
             params:
                 # left
-                P1:  main_index_top
-                P0:  main_middle_top
+                P1:  main_inner_top
+                P0:  main_inner_home
                 # GND
                 # GND
-                P2:  main_ring_top
-                P3:  main_middle_home
-                P4:  main_ring_home
-                P5:  main_middle_bottom
-                P6:  main_ring_bottom
-                P7:  main_pinkie_top
-                P8:  main_pinkie_home
-                P9:  main_pinkie_bottom
+                P2:  main_index_top
+                P3:  main_index_home
+                P4:  main_middle_top
+                P5:  main_middle_home
+                P6:  main_ring_top
+                P7:  main_ring_home
+                P8:  main_pinky_top
+                P9:  main_pinky_home
                 # right
                 # RAW
                 # GND
                 # RST
                 # VCC
-                P21: main_inner_top
-                P20: main_inner_home
-                P19: main_index_home
-                P18: main_index_bottom
-                P15: main_inner_bottom
-                P14: thumb_far_home
-                P16: thumb_home_home
-                P10: thumb_near_home
+                P21: thumb_outer_home
+                P20: thumb_home_home
+                P19: thumb_inner_home
+                P18: main_pinky_bottom
+                P15: main_ring_bottom
+                P14: main_middle_bottom
+                P16: main_index_bottom
+                P10: main_inner_bottom
+        # display:
+        #     what: oled
         bat:
             what: bat
             where:
                 ref: main_inner_bottom
-                shift: [35, -15]
-                rotate: 180
+                shift: [22, -4]
+                rotate: -90
             params:
                 neg: GND
         pcm12:
             what: pcm12
             where:
                 ref: main_inner_home
-                shift: [41, 0]
-                rotate: 90
+                shift: [40.6, -4]
+                rotate: 82.2
             params:
                 reverse: true
                 from: pos
@@ -182,12 +191,37 @@ pcbs.josukey:
             what: wuerth_434121025816
             where:
                 ref: main_inner_bottom
-                shift: [40, 0]
-                rotate: 90
+                shift: [38.5, 2.5]
+                rotate: 82.2
             params:
                 reverse: true
                 r1: RST
                 r2: GND
-
-
-
+        via_pos:
+            what: via
+            where:
+                ref: main_inner_bottom
+                shift: [35.5, 14]
+            params:
+                net: pos
+        via_raw:
+            what: via
+            where:
+                ref: main_inner_bottom
+                shift: [36.5, 14]
+            params:
+                net: RAW
+        via_gnd:
+            what: via
+            where:
+                ref: main_inner_bottom
+                shift: [35, 8.3]
+            params:
+                net: GND
+        via_rst:
+            what: via
+            where:
+                ref: main_inner_bottom
+                shift: [36, 8.3]
+            params:
+                net: RST
