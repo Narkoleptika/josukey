@@ -61,7 +61,7 @@ outlines:
             -   ref: thumb_inner_home
                 shift: [-0.6cx, 0.6cy]
             -   ref: main_middle_bottom
-                shift: [0.6cx, -0.6cy]
+                shift: [0.4cx, -0.7cy]
             -   ref: main_pinky_bottom
                 shift: [0.6cx, -0.6cy]
             -   ref: main_pinky_bottom
@@ -143,16 +143,16 @@ pcbs.josukey:
             params:
                 # left
                 P1:  main_inner_top
-                P0:  main_inner_home
+                P0:  main_index_top
                 # GND
                 # GND
-                P2:  main_index_top
-                P3:  main_index_home
-                P4:  main_middle_top
-                P5:  main_middle_home
-                P6:  main_ring_top
-                P7:  main_ring_home
-                P8:  main_pinky_top
+                P2:  main_middle_top
+                P3:  main_ring_top
+                P4:  main_pinky_top
+                P5:  main_inner_home
+                P6:  main_index_home
+                P7:  main_middle_home
+                P8:  main_ring_home
                 P9:  main_pinky_home
                 # right
                 # RAW
@@ -167,8 +167,6 @@ pcbs.josukey:
                 P14: main_middle_bottom
                 P16: main_index_bottom
                 P10: main_inner_bottom
-        # display:
-        #     what: oled
         bat:
             what: bat
             where:
