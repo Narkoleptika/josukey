@@ -2,6 +2,7 @@ points:
     key.padding: cy
     zones:
         main:
+            rotate: 28
             rows:
                 bottom:
                 home:
@@ -48,50 +49,50 @@ outlines:
         -   what: polygon
             fillet: 2
             points:
-            -   ref: thumb_outer_home
-                shift: [0.6cx, 0.6cy]
-            -   ref: thumb_outer_home
-                shift: [0.6cx, -0.6cy]
-            -   ref: thumb_home_home
-                shift: [0.6cx, -0.6cy]
-            -   ref: thumb_home_home
-                shift: [-0.6cx, -0.6cy]
-            -   ref: thumb_inner_home
-                shift: [-0.6cx, -0.6cy]
-            -   ref: thumb_inner_home
-                shift: [-0.6cx, 0.6cy]
-            -   ref: main_middle_bottom
-                shift: [0.4cx, -0.7cy]
-            -   ref: main_pinky_bottom
-                shift: [0.6cx, -0.6cy]
-            -   ref: main_pinky_bottom
-                shift: [-0.6cx, -0.6cy]
-            -   ref: main_pinky_top
-                shift: [-0.6cx, 0.6cy]
-            -   ref: main_ring_top
-                shift: [-0.6cx, 0.6cy]
-            -   ref: main_middle_top
-                shift: [-0.6cx, 0.6cy]
-            -   ref: main_middle_top
-                shift: [0.6cx, 0.6cy]
-            -   ref: main_index_top
-                shift: [-0.6cx, 0.6cy]
-            -   ref: main_index_top
-                shift: [0.6cx, 0.6cy]
-            -   ref: main_inner_top
-                shift: [0.6cx, 0.6cy]
-            -   ref: main_inner_top
-                shift: [1cx, 0.4cy]
-            -   ref: main_inner_top
-                shift: [1.6cx, 0cy]
-            -   ref: main_inner_top
-                shift: [1.8cx, -0.2cy]
-            -   ref: main_inner_top
-                shift: [2cx, -0.4cy]
-            -   ref: main_inner_top
-                shift: [2.2cx, -0.7cy]
-            -   ref: main_inner_top
-                shift: [2.4cx, -1cy]
+                -   ref: thumb_outer_home
+                    shift: [0.6cx, 0.6cy]
+                -   ref: thumb_outer_home
+                    shift: [0.6cx, -0.6cy]
+                -   ref: thumb_home_home
+                    shift: [0.6cx, -0.6cy]
+                -   ref: thumb_home_home
+                    shift: [-0.6cx, -0.6cy]
+                -   ref: thumb_inner_home
+                    shift: [-0.6cx, -0.6cy]
+                -   ref: thumb_inner_home
+                    shift: [-0.6cx, 0.6cy]
+                -   ref: main_middle_bottom
+                    shift: [0.4cx, -0.7cy]
+                -   ref: main_pinky_bottom
+                    shift: [0.6cx, -0.6cy]
+                -   ref: main_pinky_bottom
+                    shift: [-0.6cx, -0.6cy]
+                -   ref: main_pinky_top
+                    shift: [-0.6cx, 0.6cy]
+                -   ref: main_ring_top
+                    shift: [-0.6cx, 0.6cy]
+                -   ref: main_middle_top
+                    shift: [-0.6cx, 0.6cy]
+                -   ref: main_middle_top
+                    shift: [0.6cx, 0.6cy]
+                -   ref: main_index_top
+                    shift: [-0.6cx, 0.6cy]
+                -   ref: main_index_top
+                    shift: [0.6cx, 0.6cy]
+                -   ref: main_inner_top
+                    shift: [0.6cx, 0.6cy]
+                -   ref: main_inner_top
+                    shift: [1cx, 0.4cy]
+                -   ref: main_inner_top
+                    shift: [1.6cx, 0cy]
+                -   ref: main_inner_top
+                    shift: [1.8cx, -0.2cy]
+                -   ref: main_inner_top
+                    shift: [2cx, -0.4cy]
+                -   ref: main_inner_top
+                    shift: [2.2cx, -0.7cy]
+                -   ref: main_inner_top
+                    shift: [2.4cx, -1cy]
     _keycap_outlines:
         -   what: rectangle
             fillet: 2
@@ -223,3 +224,30 @@ pcbs.josukey:
                 shift: [36, 8.3]
             params:
                 net: RST
+        front_text: &text
+            what: text
+            where: &textWhere
+                ref: main_pinky_bottom
+                shift: [12, -7]
+            params: &textParams
+                text: Josukey\nA keyboard for Joey
+                justify: left
+        back_text:
+            <<: *text
+            where:
+                <<: *textWhere
+                shift: [27, -7]
+            params:
+                <<: *textParams
+                layer: B.SilkS
+                justify: left mirror
+        peace: &icon
+            what: peace
+            where:
+                ref: main_inner_bottom
+                shift: [25, -10]
+            params:
+                scale: 2
+        love:
+            <<: *icon
+            what: love
