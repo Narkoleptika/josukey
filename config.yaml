@@ -4,43 +4,107 @@ points:
         main:
             rotate: 28
             rows:
-                bottom:
-                home:
-                top:
+                bottom.row_net: P2
+                home.row_net: P0
+                top.row_net: P1
             columns:
                 pinky:
+                    key:
+                        col_net: P7
+                    rows:
+                        bottom:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_pinky_home
+                        home:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_pinky_top
+                        top:
+                            led_in: "rgb_{{name}}"
                 ring:
                     key:
+                        col_net: P6
                         splay: -8
                         spread: cx+4
                         stagger: 6
+                    rows:
+                        bottom:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_pinky_bottom
+                        home:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_ring_bottom
+                        top:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_ring_home
                 middle:
                     key:
+                        col_net: P5
                         splay: -4
                         spread: cx+2
                         stagger: -1
+                    rows:
+                        bottom:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_middle_home
+                        home:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_middle_top
+                        top:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_ring_top
                 index:
                     key:
+                        col_net: P4
                         splay: -16
                         spread: cx+4
                         stagger: -4
+                    rows:
+                        bottom:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_thumb_home_home
+                        home:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_index_bottom
+                        top:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_index_home
                 inner:
                     key:
+                        col_net: P3
                         spread: cx+2
                         stagger: -2
+                    rows:
+                        bottom:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_inner_home
+                        home:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_inner_top
+                        top:
+                            led_in: "rgb_{{name}}"
+                            led_out: rgb_main_index_top
         thumb:
             anchor:
                 ref: main_index_bottom
                 shift: [0, -cy-8]
-            rows.home:
+            rows.home.row_net: P8
             columns:
-                inner:
+                inner.key:
+                    col_net: P5
+                    led_in: "rgb_{{name}}"
+                    led_out: rgb_main_middle_bottom
                 home:
                     key:
+                        col_net: P4
+                        led_in: "rgb_{{name}}"
+                        led_out: rgb_thumb_inner_home
                         rotate: -16
                         spread: cx+4
                         stagger: -3
                 outer.key:
+                    col_net: P3
+                    led_in: P9
+                    led_out: rgb_main_inner_bottom
                     rotate: -32
                     spread: cx+2
                     stagger: -9
@@ -113,27 +177,33 @@ pcbs.josukey:
             outline: _keycap_outlines
             layer: Eco1.User
     footprints:
+        led:
+            what: sk6812mini
+            where: true
+            adjust:
+                shift: [0, -5]
+            params:
+                din: "{{led_in}}"
+                dout: "{{led_out}}"
+                cutout: true
+        diode:
+            what: sod-123w
+            where: true
+            params:
+                from: "{{name}}"
+                to: "{{row_net}}"
+            adjust:
+                shift: [ -7.6, -1.6 ]
+                rotate: 90
         choc:
             what: choc
             where: true
-            adjust:
-                rotate: 180
             params:
-                designator: S
-                keycaps: true
-                reverse: true
-                from: "{{name}}"
-                to: GND
-        choc_hotswap:
-            what: choc
-            where: true
-            params:
-                designator: S
                 keycaps: true
                 reverse: true
                 hotswap: true
-                from: "{{name}}"
-                to: GND
+                from: "{{col_net}}"
+                to: "{{name}}"
         promicro:
             what: promicro_pretty
             where:
@@ -141,38 +211,38 @@ pcbs.josukey:
             adjust:
                 shift: [22, -1]
                 rotate: -90
-            params:
-                # left
-                P1:  main_inner_top
-                P0:  main_index_top
-                # GND
-                # GND
-                P2:  main_middle_top
-                P3:  main_ring_top
-                P4:  main_pinky_top
-                P5:  main_inner_home
-                P6:  main_index_home
-                P7:  main_middle_home
-                P8:  main_ring_home
-                P9:  main_pinky_home
-                # right
-                # RAW
-                # GND
-                # RST
-                # VCC
-                P21: thumb_outer_home
-                P20: thumb_home_home
-                P19: thumb_inner_home
-                P18: main_pinky_bottom
-                P15: main_ring_bottom
-                P14: main_middle_bottom
-                P16: main_index_bottom
-                P10: main_inner_bottom
-        bat:
-            what: bat
+            # params:
+            #     # left
+            #     P1:  main_inner_top
+            #     P0:  main_index_top
+            #     # GND
+            #     # GND
+            #     P2:  main_middle_top
+            #     P3:  main_ring_top
+            #     P4:  main_pinky_top
+            #     P5:  main_inner_home
+            #     P6:  main_index_home
+            #     P7:  main_middle_home
+            #     P8:  main_ring_home
+            #     P9:  main_pinky_home
+            #     # right
+            #     # RAW
+            #     # GND
+            #     # RST
+            #     # VCC
+            #     P21: thumb_outer_home
+            #     P20: thumb_home_home
+            #     P19: thumb_inner_home
+            #     P18: main_pinky_bottom
+            #     P15: main_ring_bottom
+            #     P14: main_middle_bottom
+            #     P16: main_index_bottom
+            #     P10: main_inner_bottom
+        jst-s2b-ph-kl:
+            what: jst-s2b-ph-kl
             where:
                 ref: main_inner_bottom
-                shift: [22, -4]
+                shift: [28.5, -3]
                 rotate: -90
             params:
                 neg: GND
@@ -183,47 +253,45 @@ pcbs.josukey:
                 shift: [40.6, -4]
                 rotate: 82.2
             params:
-                reverse: true
                 from: pos
                 to: RAW
-        wuerth_434121025816:
-            what: wuerth_434121025816
+        wuerth-434121025816:
+            what: wuerth-434121025816
             where:
                 ref: main_inner_bottom
                 shift: [38.5, 2.5]
                 rotate: 82.2
             params:
-                reverse: true
                 r1: RST
                 r2: GND
-        via_pos:
-            what: via
-            where:
-                ref: main_inner_bottom
-                shift: [35.5, 14]
-            params:
-                net: pos
-        via_raw:
-            what: via
-            where:
-                ref: main_inner_bottom
-                shift: [36.5, 14]
-            params:
-                net: RAW
-        via_gnd:
-            what: via
-            where:
-                ref: main_inner_bottom
-                shift: [35, 8.3]
-            params:
-                net: GND
-        via_rst:
-            what: via
-            where:
-                ref: main_inner_bottom
-                shift: [36, 8.3]
-            params:
-                net: RST
+        # via_pos:
+        #     what: via
+        #     where:
+        #         ref: main_inner_bottom
+        #         shift: [35.5, 14]
+        #     params:
+        #         net: pos
+        # via_raw:
+        #     what: via
+        #     where:
+        #         ref: main_inner_bottom
+        #         shift: [36.5, 14]
+        #     params:
+        #         net: RAW
+        # via_gnd:
+        #     what: via
+        #     where:
+        #         ref: main_inner_bottom
+        #         shift: [35, 8.3]
+        #     params:
+        #         net: GND
+        # via_rst:
+        #     what: via
+        #     where:
+        #         ref: main_inner_bottom
+        #         shift: [36, 8.3]
+        #     params:
+        #         net: RST
         front_text: &text
             what: text
             where: &textWhere
