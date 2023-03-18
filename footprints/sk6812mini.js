@@ -46,31 +46,6 @@ module.exports = {
             (pad 6 thru_hole circle (at 5 1) (size 0.6 0.6) (drill 0.3) (layers *.Cu) (zone_connect 2) ${p.din.str})
             (pad 7 thru_hole circle (at -4.5 0) (size 0.6 0.6) (drill 0.3) (layers *.Cu) (zone_connect 2) ${p.VCC.str})
             (pad 8 thru_hole circle (at -5 -1) (size 0.6 0.6) (drill 0.3) (layers *.Cu) (zone_connect 2) ${p.dout.str})
-
         )
-
-        (segment (start ${p.xy(-3.625, -0.875)}) (end ${p.xy(-4.5, 0)}) (width 0.25) (layer "F.Cu") (net ${p.din.index}))
-        (segment (start ${p.xy(-2.2, -0.875)}) (end ${p.xy(-3.625, -0.875)}) (width 0.25) (layer "F.Cu") (net ${p.din.index}))
-        (segment (start ${p.xy(-2.2, 0.875)}) (end ${p.xy(-3.625, 0.875)}) (width 0.25) (layer "B.Cu") (net ${p.din.index}))
-        (segment (start ${p.xy(-3.625, 0.875)}) (end ${p.xy(-4.5, 0)}) (width 0.25) (layer "B.Cu") (net ${p.din.index}))
-
-        (segment (start ${p.xy(3.625, 0.875)}) (end ${p.xy(4.5, 0)}) (width 0.25) (layer "F.Cu") (net ${p.dout.index}))
-        (segment (start ${p.xy(2.2, 0.875)}) (end ${p.xy(3.625, 0.875)}) (width 0.25) (layer "F.Cu") (net ${p.dout.index}))
-        (segment (start ${p.xy(3.075, 0)}) (end ${p.xy(4.5, 0)}) (width 0.25) (layer "B.Cu") (net ${p.dout.index}))
-        (segment (start ${p.xy(2.2, -0.875)}) (end ${p.xy(3.075, 0)}) (width 0.25) (layer "B.Cu") (net ${p.dout.index}))
-
-        (segment (start ${p.xy(4.508884, -0.875)}) (end ${p.xy(5.125, -0.258884)}) (width 0.25) (layer "F.Cu") (net ${p.VCC.index}))
-        (segment (start ${p.xy(2.2, -0.875)}) (end ${p.xy(4.508884, -0.875)}) (width 0.25) (layer "F.Cu") (net ${p.VCC.index}))
-        (segment (start ${p.xy(5.125, -0.258884)}) (end ${p.xy(5.125, 0.875)}) (width 0.25) (layer "F.Cu") (net ${p.VCC.index}))
-        (segment (start ${p.xy(5.125, 0.875)}) (end ${p.xy(5, 1)}) (width 0.25) (layer "F.Cu") (net ${p.VCC.index}))
-        (segment (start ${p.xy(4.875, 0.875)}) (end ${p.xy(5, 1)}) (width 0.25) (layer "B.Cu") (net ${p.VCC.index}))
-        (segment (start ${p.xy(2.2, 0.875)}) (end ${p.xy(4.875, 0.875)}) (width 0.25) (layer "B.Cu") (net ${p.VCC.index}))
-
-        (segment (start ${p.xy(-4.508884, 0.875)}) (end ${p.xy(-5.125, 0.258884)}) (width 0.25) (layer "F.Cu") (net ${p.GND.index}))
-        (segment (start ${p.xy(-5.125, 0.258884)}) (end ${p.xy(-5.125, -0.875)}) (width 0.25) (layer "F.Cu") (net ${p.GND.index}))
-        (segment (start ${p.xy(-2.2, 0.875)}) (end ${p.xy(-4.508884, 0.875)}) (width 0.25) (layer "F.Cu") (net ${p.GND.index}))
-        (segment (start ${p.xy(-5.125, -0.875)}) (end ${p.xy(-5, -1)}) (width 0.25) (layer "F.Cu") (net ${p.GND.index}))
-        (segment (start ${p.xy(-4.875, -0.875)}) (end ${p.xy(-5, -1)}) (width 0.25) (layer "B.Cu") (net ${p.GND.index}))
-        (segment (start ${p.xy(-2.2, -0.875)}) (end ${p.xy(-4.875, -0.875)}) (width 0.25) (layer "B.Cu") (net ${p.GND.index}))
     `
 }

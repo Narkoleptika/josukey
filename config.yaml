@@ -93,14 +93,13 @@ points:
                     col_net: P5
                     led_in: "rgb_{{name}}"
                     led_out: rgb_main_middle_bottom
-                home:
-                    key:
-                        col_net: P4
-                        led_in: "rgb_{{name}}"
-                        led_out: rgb_thumb_inner_home
-                        rotate: -16
-                        spread: cx+4
-                        stagger: -3
+                home.key:
+                    col_net: P4
+                    led_in: "rgb_{{name}}"
+                    led_out: rgb_thumb_inner_home
+                    rotate: -16
+                    spread: cx+4
+                    stagger: -3
                 outer.key:
                     col_net: P3
                     led_in: P9
@@ -169,7 +168,15 @@ outlines:
         -   what: outline
             name: _keycap_outlines
             operation: stack
-
+cases.josukey:
+    -   what: outline
+        name: _board_outline
+        extrude: 3
+        operation: subtract
+    -   what: outline
+        name: _keycap_outlines
+        extrude: 6
+        operation: add
 pcbs.josukey:
     outlines:
         main.outline: _board_outline
@@ -204,6 +211,13 @@ pcbs.josukey:
                 hotswap: true
                 from: "{{col_net}}"
                 to: "{{name}}"
+        viaSwitch:
+            what: via
+            where: true
+            adjust:
+                shift: [8, 0]
+            params:
+                net: "{{col_net}}"
         promicro:
             what: promicro_pretty
             where:
@@ -246,6 +260,480 @@ pcbs.josukey:
                 rotate: -90
             params:
                 neg: GND
+        routeSwitchF: &switchRoute
+            what: route
+            where: true
+            params:
+                points:
+                    -   start:
+                            x: -8.275
+                            y: -0.475
+                        end:
+                            x: -7.6
+                            y: 0.2
+                    -   start:
+                            x: -8.275
+                            y: -3.75
+                        end:
+                            x: -8.275
+                            y: -0.475
+                    -   start:
+                            x: -2.2
+                            y: 4.080786
+                        end:
+                            x: -3.625
+                            y: 4.080786
+                    -   start:
+                            x: -3.625
+                            y: 4.080786
+                        end:
+                            x: -4.5
+                            y: 4.955786
+                    -   start:
+                            x: 3.625
+                            y: 5.830786
+                        end:
+                            x: 4.5
+                            y: 4.955786
+                    -   start:
+                            x: 2.2
+                            y: 5.830786
+                        end:
+                            x: 3.625
+                            y: 5.830786
+                    -   start:
+                            x: -5.125
+                            y: 5.21467
+                        end:
+                            x: -5.125
+                            y: 4.080786
+                    -   start:
+                            x: -2.2
+                            y: 5.830786
+                        end:
+                            x: -4.508884
+                            y: 5.830786
+                    -   start:
+                            x: -5.125
+                            y: 4.080786
+                        end:
+                            x: -5
+                            y: 3.955786
+                    -   start:
+                            x: -4.508884
+                            y: 5.830786
+                        end:
+                            x: -5.125
+                            y: 5.21467
+                    -   start:
+                            x: 2.2
+                            y: 4.080786
+                        end:
+                            x: 4.508884
+                            y: 4.080786
+                    -   start:
+                            x: 5.125
+                            y: 4.696902
+                        end:
+                            x: 5.125
+                            y: 5.830786
+                    -   start:
+                            x: 5.125
+                            y: 5.830786
+                        end:
+                            x: 5
+                            y: 5.955786
+                    -   start:
+                            x: 4.508884
+                            y: 4.080786
+                        end:
+                            x: 5.125
+                            y: 4.696902
+                    -   start:
+                            x: -8.275
+                            y: -3.794214
+                        end:
+                            x: -8.275
+                            y: -0.519214
+                    -   start:
+                            x: -8.275
+                            y: -0.519214
+                        end:
+                            x: -7.6
+                            y: 0.155786
+                    -   start:
+                            x: 3.125
+                            y: -5.844214
+                        end:
+                            x: 3.125
+                            y: -3.017564
+                    -   start:
+                            x: 6.7741
+                            y: -1.270114
+                        end:
+                            x: 8
+                            y: -0.044214
+                    -   start:
+                            x: 3.275
+                            y: -5.994214
+                        end:
+                            x: 3.125
+                            y: -5.844214
+                    -   start:
+                            x: 4.87245
+                            y: -1.270114
+                        end:
+                            x: 6.7741
+                            y: -1.270114
+                    -   start:
+                            x: 3.125
+                            y: -3.017564
+                        end:
+                            x: 4.87245
+                            y: -1.270114
+        routeSwitchB:
+            <<: *switchRoute
+            params:
+                side: B
+                points:
+                    -   start:
+                            x: 8.275
+                            y: -3.75
+                        end:
+                            x: 4.2
+                            y: -7.825
+                    -   start:
+                            x: -4.65
+                            y: -7.825
+                        end:
+                            x: -7.6
+                            y: -4.875
+                    -   start:
+                            x: -7.6
+                            y: -4.875
+                        end:
+                            x: -7.6
+                            y: 0.2
+                    -   start:
+                            x: 4.2
+                            y: -7.825
+                        end:
+                            x: -4.65
+                            y: -7.825
+                    -   start:
+                            x: -2.2
+                            y: 5.830786
+                        end:
+                            x: -3.625
+                            y: 5.830786
+                    -   start:
+                            x: -3.625
+                            y: 5.830786
+                        end:
+                            x: -4.5
+                            y: 4.955786
+                    -   start:
+                            x: 2.2
+                            y: 4.080786
+                        end:
+                            x: 3.075
+                            y: 4.955786
+                    -   start:
+                            x: 3.075
+                            y: 4.955786
+                        end:
+                            x: 4.5
+                            y: 4.955786
+                    -   start:
+                            x: -4.875
+                            y: 4.080786
+                        end:
+                            x: -5
+                            y: 3.955786
+                    -   start:
+                            x: -2.2
+                            y: 4.080786
+                        end:
+                            x: -4.875
+                            y: 4.080786
+                    -   start:
+                            x: 4.875
+                            y: 5.830786
+                        end:
+                            x: 5
+                            y: 5.955786
+                    -   start:
+                            x: 2.2
+                            y: 5.830786
+                        end:
+                            x: 4.875
+                            y: 5.830786
+                    -   start:
+                            x: -4.65
+                            y: -7.869214
+                        end:
+                            x: -7.6
+                            y: -4.919214
+                    -   start:
+                            x: 4.2
+                            y: -7.869214
+                        end:
+                            x: -4.65
+                            y: -7.869214
+                    -   start:
+                            x: 8.275
+                            y: -3.794214
+                        end:
+                            x: 4.2
+                            y: -7.869214
+                    -   start:
+                            x: -7.6
+                            y: -4.919214
+                        end:
+                            x: -7.6
+                            y: 0.155786
+                    -   start:
+                            x: -3.275
+                            y: -5.994214
+                        end:
+                            x: -0.29835
+                            y: -3.017564
+                    -   start:
+                            x: 4.872564
+                            y: -1.27
+                        end:
+                            x: 6.774214
+                            y: -1.27
+                    -   start:
+                            x: 3.125
+                            y: -3.017564
+                        end:
+                            x: 4.872564
+                            y: -1.27
+                    -   start:
+                            x: 6.774214
+                            y: -1.27
+                        end:
+                            x: 8
+                            y: -0.044214
+                    -   start:
+                            x: -0.29835
+                            y: -3.017564
+                        end:
+                            x: 3.125
+                            y: -3.017564
+        routePowerF: &powerRoute
+            what: route
+            where:
+                ref: thumb_outer_home
+                shift: [-11.5, 30.6]
+                rotate: 32
+            params:
+                points:
+                    -   start:
+                            x: 6.77589
+                            y: -27.215
+                        end:
+                            x: 2.267859
+                            y: -27.215
+                    -   start:
+                            x: 7.016635
+                            y: -26.974255
+                        end:
+                            x: 6.77589
+                            y: -27.215
+                    -   start:
+                            x: 10.441076
+                            y: -8.71993
+                        end:
+                            x: 7.016635
+                            y: -12.144371
+                    -   start:
+                            x: 7.016635
+                            y: -12.144371
+                        end:
+                            x: 7.016635
+                            y: -26.974255
+                    -   start:
+                            x: 2.245
+                            y: -29.015
+                        end:
+                            x: -4.323
+                            y: -29.015
+                    -   start:
+                            x: 2.267859
+                            y: -27.215
+                        end:
+                            x: 2.245
+                            y: -27.237859
+                    -   start:
+                            x: -4.323
+                            y: -29.015
+                        end:
+                            x: -5.738
+                            y: -30.43
+                    -   start:
+                            x: 2.245
+                            y: -27.237859
+                        end:
+                            x: 2.245
+                            y: -29.015
+                    -   start:
+                            x: 7.466635
+                            y: -27.160651
+                        end:
+                            x: 6.962286
+                            y: -27.665
+                    -   start:
+                            x: -4.323
+                            y: -31.555
+                        end:
+                            x: -5.738
+                            y: -32.97
+                    -   start:
+                            x: 2.695
+                            y: -27.665
+                        end:
+                            x: 2.695
+                            y: -31.555
+                    -   start:
+                            x: 9.47723
+                            y: -17.116279
+                        end:
+                            x: 8.632383
+                            y: -16.475005
+                    -   start:
+                            x: 10.785017
+                            y: -16.937134
+                        end:
+                            x: 9.47723
+                            y: -17.116279
+                    -   start:
+                            x: 7.466635
+                            y: -17.669604
+                        end:
+                            x: 7.466635
+                            y: -27.160651
+                    -   start:
+                            x: 8.266635
+                            y: -16.869604
+                        end:
+                            x: 7.466635
+                            y: -17.669604
+                    -   start:
+                            x: 2.695
+                            y: -31.555
+                        end:
+                            x: -4.323
+                            y: -31.555
+                    -   start:
+                            x: 6.962286
+                            y: -27.665
+                        end:
+                            x: 2.695
+                            y: -27.665
+                    -   start:
+                            x: 8.266635
+                            y: -16.840753
+                        end:
+                            x: 8.266635
+                            y: -16.869604
+                    -   start:
+                            x: 8.632383
+                            y: -16.475005
+                        end:
+                            x: 8.266635
+                            y: -16.840753
+                    -   start:
+                            x: 9.558924
+                            y: -2.28007
+                        end:
+                            x: 6.566635
+                            y: -5.272359
+                    -   start:
+                            x: -4.613
+                            y: -26.765
+                        end:
+                            x: -5.738
+                            y: -27.89
+                    -   start:
+                            x: 6.566635
+                            y: -5.272359
+                        end:
+                            x: 6.566635
+                            y: -26.765
+                    -   start:
+                            x: 6.566635
+                            y: -26.765
+                        end:
+                            x: -4.613
+                            y: -26.765
+                    -   start:
+                            x: 10.377871
+                            y: -13.964891
+                        end:
+                            x: 9.565457
+                            y: -14.076178
+                    -   start:
+                            x: 9.565457
+                            y: -14.076178
+                        end:
+                            x: 7.641635
+                            y: -16.61072
+        routePowerB:
+            <<: *powerRoute
+            params:
+                side: B
+                points:
+                    -   start:
+                            x: 10.441076
+                            y: -8.441076
+                        end:
+                            x: 10.441076
+                            y: -8.71993
+                    -   start:
+                            x: 0
+                            y: 2
+                        end:
+                            x: 10.441076
+                            y: -8.441076
+                    -   start:
+                            x: 9.273657
+                            y: -15.630157
+                        end:
+                            x: 8.632383
+                            y: -16.475005
+                    -   start:
+                            x: 10.581444
+                            y: -15.451013
+                        end:
+                            x: 9.273657
+                            y: -15.630157
+                    -   start:
+                            x: 10.988591
+                            y: -18.423256
+                        end:
+                            x: 10.176177
+                            y: -18.534543
+                    -   start:
+                            x: 7.641635
+                            y: -16.61072
+                        end:
+                            x: 7.641635
+                            y: -7.641635
+                    -   start:
+                            x: 7.641635
+                            y: -7.641635
+                        end:
+                            x: 0
+                            y: 0
+                    -   start:
+                            x: 10.176177
+                            y: -18.534543
+                        end:
+                            x: 7.641635
+                            y: -16.61072
+
         pcm12:
             what: pcm12
             where:
