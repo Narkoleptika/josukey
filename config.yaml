@@ -228,33 +228,6 @@ pcbs.josukey:
             adjust:
                 shift: [22, 6.5]
                 rotate: -90
-            # params:
-            #     # left
-            #     P1:  main_inner_top
-            #     P0:  main_index_top
-            #     # GND
-            #     # GND
-            #     P2:  main_middle_top
-            #     P3:  main_ring_top
-            #     P4:  main_pinky_top
-            #     P5:  main_inner_home
-            #     P6:  main_index_home
-            #     P7:  main_middle_home
-            #     P8:  main_ring_home
-            #     P9:  main_pinky_home
-            #     # right
-            #     # RAW
-            #     # GND
-            #     # RST
-            #     # VCC
-            #     P21: thumb_outer_home
-            #     P20: thumb_home_home
-            #     P19: thumb_inner_home
-            #     P18: main_pinky_bottom
-            #     P15: main_ring_bottom
-            #     P14: main_middle_bottom
-            #     P16: main_index_bottom
-            #     P10: main_inner_bottom
         jst-s2b-ph-kl:
             what: jst-s2b-ph-kl
             where:
