@@ -57,17 +57,5 @@ module.exports = {
             (pad "" smd rect (at 3.65 -0.78 ${p.rot}) (size 1 0.8) (layers B.Cu B.Paste B.Mask))
 
         )
-        ${''
-        // (via (at ${p.xy(0, -4.5)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.from.index}))
-        // (via (at ${p.xy(0, -3.5)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.to.index}))
-        // (segment (start ${p.xy(0.75, -2.75)}) (end ${p.xy(0, -3.5)}) (width 0.25) (layer "F.Cu") (net ${p.from.index}))
-        // (segment (start ${p.xy(0.75, -1.43)}) (end ${p.xy(0.75, -2.75)}) (width 0.25) (layer "F.Cu") (net ${p.from.index}))
-        // (segment (start ${p.xy(-0.75, -2.75)}) (end ${p.xy(0, -3.5)}) (width 0.25) (layer "B.Cu") (net ${p.from.index}))
-        // (segment (start ${p.xy(-0.75, -1.43)}) (end ${p.xy(-0.75, -2.75)}) (width 0.25) (layer "B.Cu") (net ${p.from.index}))
-        // (segment (start ${p.xy(-2.25, -2.25)}) (end ${p.xy(0, -4.5)}) (width 0.25) (layer "F.Cu") (net ${p.to.index}))
-        // (segment (start ${p.xy(-2.25, -1.43)}) (end ${p.xy(-2.25, -2.25)}) (width 0.25) (layer "F.Cu") (net ${p.to.index}))
-        // (segment (start ${p.xy(2.25, -2.25)}) (end ${p.xy(0, -4.5)}) (width 0.25) (layer "B.Cu") (net ${p.to.index}))
-        // (segment (start ${p.xy(2.25, -1.43)}) (end ${p.xy(2.25, -2.25)}) (width 0.25) (layer "B.Cu") (net ${p.to.index}))
-        }
     `
 }

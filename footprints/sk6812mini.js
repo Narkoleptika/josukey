@@ -43,11 +43,5 @@ module.exports = {
             (pad 3 smd rect (at 2.2 -0.875 ${p.rot}) (size 2.6 1) (layers B.Cu B.Paste B.Mask) ${p.GND.str})
 
         )
-        ${''
-        // (via (at ${p.xy(4.5, -0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.GND.index}))
-        // (via (at ${p.xy(6, 0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.din.index}))
-        // (via (at ${p.xy(-4.5, 0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.dout.index}))
-        // (via (at ${p.xy(-6, -0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.VCC.index}))
-        }
     `
 }
