@@ -42,10 +42,12 @@ module.exports = {
             (pad 4 smd rect (at 2.2 0.875 ${p.rot}) (size 2.6 1) (layers B.Cu B.Paste B.Mask) ${p.din.str})
             (pad 3 smd rect (at 2.2 -0.875 ${p.rot}) (size 2.6 1) (layers B.Cu B.Paste B.Mask) ${p.GND.str})
 
-            (pad 5 thru_hole circle (at 4.5 0) (size 0.6 0.6) (drill 0.3) (layers *.Cu) (zone_connect 2) ${p.GND.str})
-            (pad 6 thru_hole circle (at 5 1) (size 0.6 0.6) (drill 0.3) (layers *.Cu) (zone_connect 2) ${p.din.str})
-            (pad 7 thru_hole circle (at -4.5 0) (size 0.6 0.6) (drill 0.3) (layers *.Cu) (zone_connect 2) ${p.VCC.str})
-            (pad 8 thru_hole circle (at -5 -1) (size 0.6 0.6) (drill 0.3) (layers *.Cu) (zone_connect 2) ${p.dout.str})
         )
+        ${''
+        // (via (at ${p.xy(4.5, -0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.GND.index}))
+        // (via (at ${p.xy(6, 0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.din.index}))
+        // (via (at ${p.xy(-4.5, 0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.dout.index}))
+        // (via (at ${p.xy(-6, -0.25)}) (size 0.6) (drill 0.3) (layers "F.Cu" "B.Cu") (net ${p.VCC.index}))
+        }
     `
 }

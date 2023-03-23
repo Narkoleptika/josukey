@@ -2,7 +2,6 @@ points:
     key.padding: cy
     zones:
         main:
-            rotate: 28
             rows:
                 bottom.row_net: P2
                 home.row_net: P0
@@ -11,6 +10,7 @@ points:
                 pinky:
                     key:
                         col_net: P7
+                        spread: cx
                     rows:
                         bottom:
                             led_in: "rgb_{{name}}"
@@ -23,9 +23,8 @@ points:
                 ring:
                     key:
                         col_net: P6
-                        splay: -8
-                        spread: cx+4
-                        stagger: 6
+                        stagger: 4
+                        spread: cx
                     rows:
                         bottom:
                             led_in: "rgb_{{name}}"
@@ -39,9 +38,8 @@ points:
                 middle:
                     key:
                         col_net: P5
-                        splay: -4
-                        spread: cx+2
-                        stagger: -1
+                        stagger: 2
+                        spread: cx
                     rows:
                         bottom:
                             led_in: "rgb_{{name}}"
@@ -55,9 +53,8 @@ points:
                 index:
                     key:
                         col_net: P4
-                        splay: -16
-                        spread: cx+4
-                        stagger: -4
+                        stagger: -2
+                        spread: cx
                     rows:
                         bottom:
                             led_in: "rgb_{{name}}"
@@ -71,8 +68,8 @@ points:
                 inner:
                     key:
                         col_net: P3
-                        spread: cx+2
                         stagger: -2
+                        spread: cx
                     rows:
                         bottom:
                             led_in: "rgb_{{name}}"
@@ -86,27 +83,28 @@ points:
         thumb:
             anchor:
                 ref: main_index_bottom
-                shift: [0, -cy-8]
+                shift: [-0.5cx, -cy]
             rows.home.row_net: P8
             columns:
                 inner.key:
                     col_net: P5
                     led_in: "rgb_{{name}}"
                     led_out: rgb_main_middle_bottom
+                    spread: cx
                 home.key:
                     col_net: P4
                     led_in: "rgb_{{name}}"
                     led_out: rgb_thumb_inner_home
-                    rotate: -16
-                    spread: cx+4
-                    stagger: -3
+                    spread: cx + 2
+                    rotate: -18
+                    stagger: -3.2
                 outer.key:
                     col_net: P3
                     led_in: P9
                     led_out: rgb_main_inner_bottom
-                    rotate: -32
-                    spread: cx+2
-                    stagger: -9
+                    spread: cx
+                    rotate: -36
+                    stagger: -9.2
 outlines:
     _board_outline:
         -   what: polygon
@@ -116,46 +114,58 @@ outlines:
                     shift: [0.6cx, 0.6cy]
                 -   ref: thumb_outer_home
                     shift: [0.6cx, -0.6cy]
+                -   ref: thumb_outer_home
+                    shift: [-0.4cx, -0.6cy]
+
                 -   ref: thumb_home_home
-                    shift: [0.6cx, -0.6cy]
+                    shift: [0.4cx, -0.6cy]
                 -   ref: thumb_home_home
-                    shift: [-0.6cx, -0.6cy]
+                    shift: [-0.4cx, -0.6cy]
+
+                -   ref: thumb_inner_home
+                    shift: [0.4cx, -0.6cy]
                 -   ref: thumb_inner_home
                     shift: [-0.6cx, -0.6cy]
-                -   ref: thumb_inner_home
-                    shift: [-0.6cx, 0.6cy]
-                -   ref: main_middle_bottom
-                    shift: [0.4cx, -0.7cy]
+
+                -   ref: main_pinky_bottom
+                    shift: [1.6cx, -0.6cy]
                 -   ref: main_pinky_bottom
                     shift: [0.6cx, -0.6cy]
                 -   ref: main_pinky_bottom
                     shift: [-0.6cx, -0.6cy]
+
                 -   ref: main_pinky_top
                     shift: [-0.6cx, 0.6cy]
+                -   ref: main_pinky_top
+                    shift: [0.4cx, 0.6cy]
+
                 -   ref: main_ring_top
-                    shift: [-0.6cx, 0.6cy]
+                    shift: [-0.5cx, 0.6cy]
+                -   ref: main_ring_top
+                    shift: [0.4cx, 0.6cy]
+
                 -   ref: main_middle_top
-                    shift: [-0.6cx, 0.6cy]
+                    shift: [-0.4cx, 0.61cy]
                 -   ref: main_middle_top
-                    shift: [0.6cx, 0.6cy]
+                    shift: [0.4cx, 0.6cy]
+
                 -   ref: main_index_top
-                    shift: [-0.6cx, 0.6cy]
+                    shift: [-0.4cx, 0.6cy]
                 -   ref: main_index_top
-                    shift: [0.6cx, 0.6cy]
+                    shift: [0.5cx, 0.6cy]
+
                 -   ref: main_inner_top
-                    shift: [0.6cx, 0.6cy]
+                    shift: [-0.4cx, 0.6cy]
                 -   ref: main_inner_top
-                    shift: [1cx, 0.4cy]
+                    shift: [0.5cx, 0.6cy]
+
                 -   ref: main_inner_top
-                    shift: [1.6cx, 0cy]
+                    shift: [0.6cx, 0.4cy]
                 -   ref: main_inner_top
-                    shift: [1.8cx, -0.2cy]
-                -   ref: main_inner_top
-                    shift: [2cx, -0.4cy]
-                -   ref: main_inner_top
-                    shift: [2.2cx, -0.7cy]
-                -   ref: main_inner_top
-                    shift: [2.4cx, -1cy]
+                    shift: [1.8cx, 0.4cy]
+
+                -   ref: main_inner_bottom
+                    shift: [1.8cx, -0.6cy]
     _keycap_outlines:
         -   what: rectangle
             fillet: 2
@@ -213,9 +223,10 @@ pcbs.josukey:
                 to: "{{name}}"
         viaSwitch:
             what: via
+            $skip: true
             where: true
             adjust:
-                shift: [8, 0]
+                shift: [0, 3]
             params:
                 net: "{{col_net}}"
         promicro:
@@ -223,7 +234,7 @@ pcbs.josukey:
             where:
                 ref: main_inner_home
             adjust:
-                shift: [22, -1]
+                shift: [22, 6.5]
                 rotate: -90
             # params:
             #     # left
@@ -256,490 +267,16 @@ pcbs.josukey:
             what: jst-s2b-ph-kl
             where:
                 ref: main_inner_bottom
-                shift: [28.5, -3]
-                rotate: -90
+                shift: [21, -2]
+                rotate: 180
             params:
                 neg: GND
-        routeSwitchF: &switchRoute
-            what: route
-            where: true
-            params:
-                points:
-                    -   start:
-                            x: -8.275
-                            y: -0.475
-                        end:
-                            x: -7.6
-                            y: 0.2
-                    -   start:
-                            x: -8.275
-                            y: -3.75
-                        end:
-                            x: -8.275
-                            y: -0.475
-                    -   start:
-                            x: -2.2
-                            y: 4.080786
-                        end:
-                            x: -3.625
-                            y: 4.080786
-                    -   start:
-                            x: -3.625
-                            y: 4.080786
-                        end:
-                            x: -4.5
-                            y: 4.955786
-                    -   start:
-                            x: 3.625
-                            y: 5.830786
-                        end:
-                            x: 4.5
-                            y: 4.955786
-                    -   start:
-                            x: 2.2
-                            y: 5.830786
-                        end:
-                            x: 3.625
-                            y: 5.830786
-                    -   start:
-                            x: -5.125
-                            y: 5.21467
-                        end:
-                            x: -5.125
-                            y: 4.080786
-                    -   start:
-                            x: -2.2
-                            y: 5.830786
-                        end:
-                            x: -4.508884
-                            y: 5.830786
-                    -   start:
-                            x: -5.125
-                            y: 4.080786
-                        end:
-                            x: -5
-                            y: 3.955786
-                    -   start:
-                            x: -4.508884
-                            y: 5.830786
-                        end:
-                            x: -5.125
-                            y: 5.21467
-                    -   start:
-                            x: 2.2
-                            y: 4.080786
-                        end:
-                            x: 4.508884
-                            y: 4.080786
-                    -   start:
-                            x: 5.125
-                            y: 4.696902
-                        end:
-                            x: 5.125
-                            y: 5.830786
-                    -   start:
-                            x: 5.125
-                            y: 5.830786
-                        end:
-                            x: 5
-                            y: 5.955786
-                    -   start:
-                            x: 4.508884
-                            y: 4.080786
-                        end:
-                            x: 5.125
-                            y: 4.696902
-                    -   start:
-                            x: -8.275
-                            y: -3.794214
-                        end:
-                            x: -8.275
-                            y: -0.519214
-                    -   start:
-                            x: -8.275
-                            y: -0.519214
-                        end:
-                            x: -7.6
-                            y: 0.155786
-                    -   start:
-                            x: 3.125
-                            y: -5.844214
-                        end:
-                            x: 3.125
-                            y: -3.017564
-                    -   start:
-                            x: 6.7741
-                            y: -1.270114
-                        end:
-                            x: 8
-                            y: -0.044214
-                    -   start:
-                            x: 3.275
-                            y: -5.994214
-                        end:
-                            x: 3.125
-                            y: -5.844214
-                    -   start:
-                            x: 4.87245
-                            y: -1.270114
-                        end:
-                            x: 6.7741
-                            y: -1.270114
-                    -   start:
-                            x: 3.125
-                            y: -3.017564
-                        end:
-                            x: 4.87245
-                            y: -1.270114
-        routeSwitchB:
-            <<: *switchRoute
-            params:
-                side: B
-                points:
-                    -   start:
-                            x: 8.275
-                            y: -3.75
-                        end:
-                            x: 4.2
-                            y: -7.825
-                    -   start:
-                            x: -4.65
-                            y: -7.825
-                        end:
-                            x: -7.6
-                            y: -4.875
-                    -   start:
-                            x: -7.6
-                            y: -4.875
-                        end:
-                            x: -7.6
-                            y: 0.2
-                    -   start:
-                            x: 4.2
-                            y: -7.825
-                        end:
-                            x: -4.65
-                            y: -7.825
-                    -   start:
-                            x: -2.2
-                            y: 5.830786
-                        end:
-                            x: -3.625
-                            y: 5.830786
-                    -   start:
-                            x: -3.625
-                            y: 5.830786
-                        end:
-                            x: -4.5
-                            y: 4.955786
-                    -   start:
-                            x: 2.2
-                            y: 4.080786
-                        end:
-                            x: 3.075
-                            y: 4.955786
-                    -   start:
-                            x: 3.075
-                            y: 4.955786
-                        end:
-                            x: 4.5
-                            y: 4.955786
-                    -   start:
-                            x: -4.875
-                            y: 4.080786
-                        end:
-                            x: -5
-                            y: 3.955786
-                    -   start:
-                            x: -2.2
-                            y: 4.080786
-                        end:
-                            x: -4.875
-                            y: 4.080786
-                    -   start:
-                            x: 4.875
-                            y: 5.830786
-                        end:
-                            x: 5
-                            y: 5.955786
-                    -   start:
-                            x: 2.2
-                            y: 5.830786
-                        end:
-                            x: 4.875
-                            y: 5.830786
-                    -   start:
-                            x: -4.65
-                            y: -7.869214
-                        end:
-                            x: -7.6
-                            y: -4.919214
-                    -   start:
-                            x: 4.2
-                            y: -7.869214
-                        end:
-                            x: -4.65
-                            y: -7.869214
-                    -   start:
-                            x: 8.275
-                            y: -3.794214
-                        end:
-                            x: 4.2
-                            y: -7.869214
-                    -   start:
-                            x: -7.6
-                            y: -4.919214
-                        end:
-                            x: -7.6
-                            y: 0.155786
-                    -   start:
-                            x: -3.275
-                            y: -5.994214
-                        end:
-                            x: -0.29835
-                            y: -3.017564
-                    -   start:
-                            x: 4.872564
-                            y: -1.27
-                        end:
-                            x: 6.774214
-                            y: -1.27
-                    -   start:
-                            x: 3.125
-                            y: -3.017564
-                        end:
-                            x: 4.872564
-                            y: -1.27
-                    -   start:
-                            x: 6.774214
-                            y: -1.27
-                        end:
-                            x: 8
-                            y: -0.044214
-                    -   start:
-                            x: -0.29835
-                            y: -3.017564
-                        end:
-                            x: 3.125
-                            y: -3.017564
-        routePowerF: &powerRoute
-            what: route
-            where:
-                ref: thumb_outer_home
-                shift: [-11.5, 30.6]
-                rotate: 32
-            params:
-                points:
-                    -   start:
-                            x: 6.77589
-                            y: -27.215
-                        end:
-                            x: 2.267859
-                            y: -27.215
-                    -   start:
-                            x: 7.016635
-                            y: -26.974255
-                        end:
-                            x: 6.77589
-                            y: -27.215
-                    -   start:
-                            x: 10.441076
-                            y: -8.71993
-                        end:
-                            x: 7.016635
-                            y: -12.144371
-                    -   start:
-                            x: 7.016635
-                            y: -12.144371
-                        end:
-                            x: 7.016635
-                            y: -26.974255
-                    -   start:
-                            x: 2.245
-                            y: -29.015
-                        end:
-                            x: -4.323
-                            y: -29.015
-                    -   start:
-                            x: 2.267859
-                            y: -27.215
-                        end:
-                            x: 2.245
-                            y: -27.237859
-                    -   start:
-                            x: -4.323
-                            y: -29.015
-                        end:
-                            x: -5.738
-                            y: -30.43
-                    -   start:
-                            x: 2.245
-                            y: -27.237859
-                        end:
-                            x: 2.245
-                            y: -29.015
-                    -   start:
-                            x: 7.466635
-                            y: -27.160651
-                        end:
-                            x: 6.962286
-                            y: -27.665
-                    -   start:
-                            x: -4.323
-                            y: -31.555
-                        end:
-                            x: -5.738
-                            y: -32.97
-                    -   start:
-                            x: 2.695
-                            y: -27.665
-                        end:
-                            x: 2.695
-                            y: -31.555
-                    -   start:
-                            x: 9.47723
-                            y: -17.116279
-                        end:
-                            x: 8.632383
-                            y: -16.475005
-                    -   start:
-                            x: 10.785017
-                            y: -16.937134
-                        end:
-                            x: 9.47723
-                            y: -17.116279
-                    -   start:
-                            x: 7.466635
-                            y: -17.669604
-                        end:
-                            x: 7.466635
-                            y: -27.160651
-                    -   start:
-                            x: 8.266635
-                            y: -16.869604
-                        end:
-                            x: 7.466635
-                            y: -17.669604
-                    -   start:
-                            x: 2.695
-                            y: -31.555
-                        end:
-                            x: -4.323
-                            y: -31.555
-                    -   start:
-                            x: 6.962286
-                            y: -27.665
-                        end:
-                            x: 2.695
-                            y: -27.665
-                    -   start:
-                            x: 8.266635
-                            y: -16.840753
-                        end:
-                            x: 8.266635
-                            y: -16.869604
-                    -   start:
-                            x: 8.632383
-                            y: -16.475005
-                        end:
-                            x: 8.266635
-                            y: -16.840753
-                    -   start:
-                            x: 9.558924
-                            y: -2.28007
-                        end:
-                            x: 6.566635
-                            y: -5.272359
-                    -   start:
-                            x: -4.613
-                            y: -26.765
-                        end:
-                            x: -5.738
-                            y: -27.89
-                    -   start:
-                            x: 6.566635
-                            y: -5.272359
-                        end:
-                            x: 6.566635
-                            y: -26.765
-                    -   start:
-                            x: 6.566635
-                            y: -26.765
-                        end:
-                            x: -4.613
-                            y: -26.765
-                    -   start:
-                            x: 10.377871
-                            y: -13.964891
-                        end:
-                            x: 9.565457
-                            y: -14.076178
-                    -   start:
-                            x: 9.565457
-                            y: -14.076178
-                        end:
-                            x: 7.641635
-                            y: -16.61072
-        routePowerB:
-            <<: *powerRoute
-            params:
-                side: B
-                points:
-                    -   start:
-                            x: 10.441076
-                            y: -8.441076
-                        end:
-                            x: 10.441076
-                            y: -8.71993
-                    -   start:
-                            x: 0
-                            y: 2
-                        end:
-                            x: 10.441076
-                            y: -8.441076
-                    -   start:
-                            x: 9.273657
-                            y: -15.630157
-                        end:
-                            x: 8.632383
-                            y: -16.475005
-                    -   start:
-                            x: 10.581444
-                            y: -15.451013
-                        end:
-                            x: 9.273657
-                            y: -15.630157
-                    -   start:
-                            x: 10.988591
-                            y: -18.423256
-                        end:
-                            x: 10.176177
-                            y: -18.534543
-                    -   start:
-                            x: 7.641635
-                            y: -16.61072
-                        end:
-                            x: 7.641635
-                            y: -7.641635
-                    -   start:
-                            x: 7.641635
-                            y: -7.641635
-                        end:
-                            x: 0
-                            y: 0
-                    -   start:
-                            x: 10.176177
-                            y: -18.534543
-                        end:
-                            x: 7.641635
-                            y: -16.61072
-
         pcm12:
             what: pcm12
             where:
-                ref: main_inner_home
-                shift: [40.6, -4]
-                rotate: 82.2
+                ref: main_inner_bottom
+                shift: [30.5, 3]
+                rotate: 90
             params:
                 from: pos
                 to: RAW
@@ -747,39 +284,11 @@ pcbs.josukey:
             what: wuerth-434121025816
             where:
                 ref: main_inner_bottom
-                shift: [38.5, 2.5]
-                rotate: 82.2
+                shift: [30, -6]
+                rotate: 90
             params:
                 r1: RST
                 r2: GND
-        # via_pos:
-        #     what: via
-        #     where:
-        #         ref: main_inner_bottom
-        #         shift: [35.5, 14]
-        #     params:
-        #         net: pos
-        # via_raw:
-        #     what: via
-        #     where:
-        #         ref: main_inner_bottom
-        #         shift: [36.5, 14]
-        #     params:
-        #         net: RAW
-        # via_gnd:
-        #     what: via
-        #     where:
-        #         ref: main_inner_bottom
-        #         shift: [35, 8.3]
-        #     params:
-        #         net: GND
-        # via_rst:
-        #     what: via
-        #     where:
-        #         ref: main_inner_bottom
-        #         shift: [36, 8.3]
-        #     params:
-        #         net: RST
         front_text: &text
             what: text
             where: &textWhere
@@ -797,13 +306,389 @@ pcbs.josukey:
                 <<: *textParams
                 layer: B.SilkS
                 justify: left mirror
+        safeText:
+            <<: *text
+            what: keepout
+            params:
+                points:
+                    -   x: -0.5
+                        y: -2
+                    -   x: 15.5
+                        y: -2
+                    -   x: 15.5
+                        y: 2
+                    -   x: -0.5
+                        y: 2
         peace: &icon
             what: peace
             where:
                 ref: main_inner_bottom
-                shift: [25, -10]
+                shift: [16, -9]
             params:
-                scale: 2
+                scale: 1.25
         love:
             <<: *icon
             what: love
+        safeIcon:
+            <<: *icon
+            what: keepout
+            params:
+                points:
+                    -   x: 0
+                        y: 0
+                    -   x: 8
+                        y: 0
+                    -   x: 8
+                        y: 8
+                    -   x: 0
+                        y: 8
+        routeSwitchF: &switchRoute
+            what: route
+            where: true
+            $skip: true
+            params:
+                points:
+                    -   start:
+                            x: -5.375
+                            y: 4.125
+                        end:
+                            x: -6
+                            y: 4.75
+                    -   start:
+                            x: -2.2
+                            y: 4.125
+                        end:
+                            x: -5.375
+                            y: 4.125
+                    -   start:
+                            x: 2.2
+                            y: 5.875
+                        end:
+                            x: 3.375
+                            y: 5.875
+                    -   start:
+                            x: 3.375
+                            y: 5.875
+                        end:
+                            x: 4.5
+                            y: 4.75
+                    -   start:
+                            x: -3.875
+                            y: 5.875
+                        end:
+                            x: -4.5
+                            y: 5.25
+                    -   start:
+                            x: -2.2
+                            y: 5.875
+                        end:
+                            x: -3.875
+                            y: 5.875
+                    -   start:
+                            x: 4.875
+                            y: 4.125
+                        end:
+                            x: 6
+                            y: 5.25
+                    -   start:
+                            x: 2.2
+                            y: 4.125
+                        end:
+                            x: 4.875
+                            y: 4.125
+                    -   start:
+                            x: -8.275
+                            y: -3.75
+                        end:
+                            x: -8.275
+                            y: -0.475
+                    -   start:
+                            x: -8.275
+                            y: -0.475
+                        end:
+                            x: -7.6
+                            y: 0.2
+                    -   start:
+                            x: 2.95
+                            y: -5.95
+                        end:
+                            x: 0
+                            y: -3
+                    -   start:
+                            x: 3.275
+                            y: -5.95
+                        end:
+                            x: 2.95
+                            y: -5.95
+        routeSwitchB:
+            <<: *switchRoute
+            params:
+                side: B
+                points:
+                    -   start:
+                            x: -4.875
+                            y: 5.875
+                        end:
+                            x: -6
+                            y: 4.75
+                    -   start:
+                            x: -2.2
+                            y: 5.875
+                        end:
+                            x: -4.875
+                            y: 5.875
+                    -   start:
+                            x: 3.875
+                            y: 4.125
+                        end:
+                            x: 4.5
+                            y: 4.75
+                    -   start:
+                            x: 2.2
+                            y: 4.125
+                        end:
+                            x: 3.875
+                            y: 4.125
+                    -   start:
+                            x: -2.2
+                            y: 4.125
+                        end:
+                            x: -3.375
+                            y: 4.125
+                    -   start:
+                            x: -3.375
+                            y: 4.125
+                        end:
+                            x: -4.5
+                            y: 5.25
+                    -   start:
+                            x: 2.2
+                            y: 5.875
+                        end:
+                            x: 5.375
+                            y: 5.875
+                    -   start:
+                            x: 5.375
+                            y: 5.875
+                        end:
+                            x: 6
+                            y: 5.25
+                    -   start:
+                            x: 1.535
+                            y: -2.275
+                        end:
+                            x: -2.805
+                            y: -2.275
+                    -   start:
+                            x: -3.8541
+                            y: -1.2259
+                        end:
+                            x: -6.1741
+                            y: -1.2259
+                    -   start:
+                            x: 6.4
+                            y: -1.875
+                        end:
+                            x: 1.935
+                            y: -1.875
+                    -   start:
+                            x: 8.275
+                            y: -3.75
+                        end:
+                            x: 6.4
+                            y: -1.875
+                    -   start:
+                            x: -6.1741
+                            y: -1.2259
+                        end:
+                            x: -7.6
+                            y: 0.2
+                    -   start:
+                            x: -2.805
+                            y: -2.275
+                        end:
+                            x: -3.8541
+                            y: -1.2259
+                    -   start:
+                            x: 1.935
+                            y: -1.875
+                        end:
+                            x: 1.535
+                            y: -2.275
+                    -   start:
+                            x: -3.275
+                            y: -5.95
+                        end:
+                            x: -2.95
+                            y: -5.95
+                    -   start:
+                            x: -2.95
+                            y: -5.95
+                        end:
+                            x: 0
+                            y: -3
+
+        routePowerF: &powerRoute
+            what: route
+            $skip: true
+            where:
+                ref: main_inner_bottom
+                shift: [21, -2]
+            params:
+                points:
+                    -   start:
+                            x: 5.55
+                            y: -5.84
+                        end:
+                            x: 5.55
+                            y: -7.666396
+                    -   start:
+                            x: 10.056396
+                            y: -9.475
+                        end:
+                            x: 10.32
+                            y: -9.738604
+                    -   start:
+                            x: 3.132
+                            y: -38.1
+                        end:
+                            x: 1.762
+                            y: -39.47
+                    -   start:
+                            x: 7.995
+                            y: -9.475
+                        end:
+                            x: 10.056396
+                            y: -9.475
+                    -   start:
+                            x: 6
+                            y: -7.48
+                        end:
+                            x: 7.995
+                            y: -9.475
+                    -   start:
+                            x: 10.32
+                            y: -38.1
+                        end:
+                            x: 3.132
+                            y: -38.1
+                    -   start:
+                            x: 6
+                            y: -5
+                        end:
+                            x: 6
+                            y: -7.48
+                    -   start:
+                            x: 10.32
+                            y: -9.738604
+                        end:
+                            x: 10.32
+                            y: -38.1
+                    -   start:
+                            x: 9
+                            y: 7.25
+                        end:
+                            x: 6.995
+                            y: 5.245
+                    -   start:
+                            x: 4.956116
+                            y: -5.84
+                        end:
+                            x: 5.55
+                            y: -5.84
+                    -   start:
+                            x: 9.87
+                            y: -9.925
+                        end:
+                            x: 9.87
+                            y: -33.02
+                    -   start:
+                            x: 3.132
+                            y: -33.02
+                        end:
+                            x: 1.762
+                            y: -34.39
+                    -   start:
+                            x: 4.741116
+                            y: -4.375
+                        end:
+                            x: 4.375
+                            y: -4.741116
+                    -   start:
+                            x: 4.375
+                            y: -5.258884
+                        end:
+                            x: 4.956116
+                            y: -5.84
+                    -   start:
+                            x: 4.375
+                            y: -4.741116
+                        end:
+                            x: 4.375
+                            y: -5.258884
+                    -   start:
+                            x: 6.995
+                            y: -2.368604
+                        end:
+                            x: 4.988604
+                            y: -4.375
+                    -   start:
+                            x: 5.55
+                            y: -7.666396
+                        end:
+                            x: 7.808604
+                            y: -9.925
+                    -   start:
+                            x: 4.988604
+                            y: -4.375
+                        end:
+                            x: 4.741116
+                            y: -4.375
+                    -   start:
+                            x: 9.87
+                            y: -33.02
+                        end:
+                            x: 3.132
+                            y: -33.02
+                    -   start:
+                            x: 6.995
+                            y: 5.245
+                        end:
+                            x: 6.995
+                            y: -2.368604
+                    -   start:
+                            x: 7.808604
+                            y: -9.925
+                        end:
+                            x: 9.87
+                            y: -9.925
+        routePowerB:
+            <<: *powerRoute
+            params:
+                side: B
+                points:
+                    -   start:
+                            x: 8.55
+                            y: 1.2
+                        end:
+                            x: -0.8
+                            y: 1.2
+                    -   start:
+                            x: 9
+                            y: 0.75
+                        end:
+                            x: 8.55
+                            y: 1.2
+                    -   start:
+                            x: -0.8
+                            y: 1.2
+                        end:
+                            x: -2
+                            y: 0
+                    -   start:
+                            x: 5
+                            y: -5
+                        end:
+                            x: 0
+                            y: 0
+

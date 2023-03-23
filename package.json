@@ -13,7 +13,7 @@
         "watch": "nodemon --ext .js,.yaml --watch footprints --watch config.yaml --exec npm run build"
     },
     "dependencies": {
-        "ergogen": "ergogen/ergogen#b27e10374e1d59caa014763178af0ea3e36cd5d8"
+        "ergogen": "^4.0.2"
     },
     "devDependencies": {
         "nodemon": "^2.0.21"
