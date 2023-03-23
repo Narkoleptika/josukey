@@ -1,7 +1,7 @@
 {
     "name": "josukey",
     "description": "A keyboard for Joey",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Joey <joe@joey.codes>",
     "license": "MIT",
     "private": true,
