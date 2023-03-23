@@ -315,9 +315,9 @@ pcbs.josukey:
             what: peace
             where:
                 ref: main_inner_bottom
-                shift: [16, -9]
+                shift: [13, -6]
             params:
-                scale: 1.25
+                scale: 2
         love:
             <<: *icon
             what: love
@@ -326,11 +326,11 @@ pcbs.josukey:
             what: keepout
             params:
                 points:
-                    -   x: 0
-                        y: 0
-                    -   x: 8
-                        y: 0
-                    -   x: 8
-                        y: 8
-                    -   x: 0
-                        y: 8
+                    -   x: -0.5
+                        y: -0.5
+                    -   x: 13.25
+                        y: -0.5
+                    -   x: 13.25
+                        y: 13.25
+                    -   x: -0.5
+                        y: 13.25
