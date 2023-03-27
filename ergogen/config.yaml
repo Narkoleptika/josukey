@@ -3,13 +3,13 @@ points:
     zones:
         main:
             rows:
-                bottom.row_net: P2
-                home.row_net: P0
-                top.row_net: P1
+                bottom.row_net: P3
+                home.row_net: P2
+                top.row_net: P0
             columns:
                 pinky:
                     key:
-                        col_net: P7
+                        col_net: P8
                         spread: cx
                     rows:
                         bottom:
@@ -22,7 +22,7 @@ points:
                             led_in: "rgb_{{name}}"
                 ring:
                     key:
-                        col_net: P6
+                        col_net: P7
                         stagger: 4
                         spread: cx
                     rows:
@@ -37,7 +37,7 @@ points:
                             led_out: rgb_main_ring_home
                 middle:
                     key:
-                        col_net: P5
+                        col_net: P6
                         stagger: 2
                         spread: cx
                     rows:
@@ -52,7 +52,7 @@ points:
                             led_out: rgb_main_ring_top
                 index:
                     key:
-                        col_net: P4
+                        col_net: P5
                         stagger: -2
                         spread: cx
                     rows:
@@ -67,7 +67,7 @@ points:
                             led_out: rgb_main_index_home
                 inner:
                     key:
-                        col_net: P3
+                        col_net: P4
                         stagger: -2
                         spread: cx
                     rows:
@@ -84,31 +84,30 @@ points:
             anchor:
                 ref: main_index_bottom
                 shift: [-0.5cx, -cy]
-            rows.home.row_net: P8
+            rows.home.row_net: P9
             columns:
                 inner.key:
-                    col_net: P5
+                    col_net: P6
                     led_in: "rgb_{{name}}"
                     led_out: rgb_main_middle_bottom
                     spread: cx
                 home.key:
-                    col_net: P4
+                    col_net: P5
                     led_in: "rgb_{{name}}"
                     led_out: rgb_thumb_inner_home
                     spread: cx + 2
                     rotate: -18
                     stagger: -3.2
                 outer.key:
-                    col_net: P3
-                    led_in: P9
+                    col_net: P4
+                    led_in: P1
                     led_out: rgb_main_inner_bottom
                     spread: cx
                     rotate: -36
                     stagger: -9.2
 outlines:
-    _board_outline:
+    _plate_outline:
         -   what: polygon
-            fillet: 2
             points:
                 -   ref: thumb_outer_home
                     shift: [0.6cx, 0.6cy]
@@ -158,7 +157,18 @@ outlines:
                     shift: [-0.4cx, 0.6cy]
                 -   ref: main_inner_top
                     shift: [0.5cx, 0.6cy]
+                -   ref: main_inner_top
+                    shift: [0.6cx, 0.4cy]
 
+                -   ref: main_inner_bottom
+                    shift: [0.6cx, -0.4cy]
+
+                -   ref: thumb_outer_home
+                    shift: [-0.6cx, 0.6cy]
+
+    _backplate_additional_outline:
+        -   what: polygon
+            points:
                 -   ref: main_inner_top
                     shift: [0.6cx, 0.4cy]
                 -   ref: main_inner_top
@@ -166,30 +176,135 @@ outlines:
 
                 -   ref: main_inner_bottom
                     shift: [1.8cx, -0.6cy]
+
+                -   ref: thumb_outer_home
+                    shift: [0.6cx, 0.6cy]
+                -   ref: thumb_outer_home
+                    shift: [-0.6cx, 0.6cy]
+
+    _screws:
+        -   &circle
+            what: circle
+            radius: 1.1
+            adjust:
+                ref: main_ring_top
+                shift: [-0.5cx, -0.5cy]
+        -   <<: *circle
+            adjust:
+                ref: main_ring_home
+                shift: [-0.5cx, -0.5cy]
+        -   <<: *circle
+            adjust:
+                ref: main_index_top
+                shift: [0.5cx, -0.5cy]
+        -   <<: *circle
+            adjust:
+                ref: thumb_inner_home
+                shift: [-0.5cx, 0.5cy]
+        -   <<: *circle
+            adjust:
+                ref: thumb_home_home
+                shift: [0.5cx, 0.5cy]
+
+    _spacers:
+        -   &bigCircle
+            <<: *circle
+            radius: 2.05
+            adjust:
+                ref: main_ring_top
+                shift: [-0.5cx, -0.5cy]
+        -   <<: *bigCircle
+            adjust:
+                ref: main_ring_home
+                shift: [-0.5cx, -0.5cy]
+        -   <<: *bigCircle
+            adjust:
+                ref: main_index_top
+                shift: [0.5cx, -0.5cy]
+        -   <<: *bigCircle
+            adjust:
+                ref: thumb_inner_home
+                shift: [-0.5cx, 0.5cy]
+        -   <<: *bigCircle
+            adjust:
+                ref: thumb_home_home
+                shift: [0.5cx, 0.5cy]
+
+    _key_outlines:
+        -   what: rectangle
+            where: true
+            size: [13.8, 13.8]
+
     _keycap_outlines:
         -   what: rectangle
             fillet: 2
             where: true
             size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+
+    _backplate_outline:
+        -   what: outline
+            name: _plate_outline
+        -   what: outline
+            name: _backplate_additional_outline
+            operation: add
+
+    _backplate:
+        -   what: outline
+            name: _backplate_outline
+            fillet: 2
+        -   what: outline
+            name: _screws
+            operation: subtract
+
+    _frontplate:
+        -   what: outline
+            name: _plate_outline
+            fillet: 2
+        -   what: outline
+            name: _key_outlines
+            operation: subtract
+        -   what: outline
+            name: _screws
+            operation: subtract
+    _pcb:
+        -   what: outline
+            name: _backplate_outline
+            fillet: 2
+        -   what: outline
+            name: _spacers
+            operation: subtract
+
     preview:
         -   what: outline
-            name: _board_outline
+            name: _backplate
+        -   what: outline
+            name: _pcb
             operation: stack
+            adjust:
+                shift: [120, 0]
+        -   what: outline
+            name: _frontplate
+            operation: stack
+            adjust:
+                shift: [0, -90]
         -   what: outline
             name: _keycap_outlines
             operation: stack
-cases.josukey:
-    -   what: outline
-        name: _board_outline
-        extrude: 3
-        operation: subtract
-    -   what: outline
-        name: _keycap_outlines
-        extrude: 6
-        operation: add
+            adjust:
+                shift: [120, -90]
+cases:
+    backplate:
+        -   what: outline
+            name: _backplate
+            extrude: 1.2
+    frontplate:
+        -   what: outline
+            name: _frontplate
+            extrude: 1.2
+
 pcbs.josukey:
     outlines:
-        main.outline: _board_outline
+        main.outline: _pcb
         keycaps:
             outline: _keycap_outlines
             layer: Eco1.User
