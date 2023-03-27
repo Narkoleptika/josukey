@@ -1,0 +1,3 @@
+#include "./miryoku_conf.h"
+#include "/miryoku_zmk/miryoku/mapping/36/minidox.h"
+#include "/miryoku_zmk/miryoku/miryoku.dtsi"

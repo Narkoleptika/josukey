@@ -13,6 +13,10 @@ This is an ergogen based corne clone that I intend to modify and tweak as I desc
     <img src="./images/v1.jpg" width="100%">
 </p>
 
+## Prerequisites
+
+* Node
+* Docker
 ## Getting Started
 
 Get my files on your computer 😏 and install dependencies.
@@ -23,27 +27,58 @@ cd josukey
 npm i
 ```
 
-## Build
+## Ergogen
+
+
+### Build
 
 This will run Ergogen and build all of the output files.
 
 ```bash
-npm run build
+npm run ergogen:build
 ```
 
-## Watch
+### Watch
 
 This will watch the `config.yaml` file and the `footprints` directory and run the build command whenever there are changes.
 
 ```bash
-npm run watch
+npm run ergogen:watch
+```
+
+## ZMK
+
+### Init
+
+Downloads ZMK dependencies
+
+```bash
+npm run zmk:update
+```
+
+### Build
+
+Builds the ZMK firmware
+
+```bash
+npm run zmk:build
+```
+
+### Down
+
+Shuts down the ZMK docker services
+
+```bash
+npm run zmk:down
 ```
 
 ## Thanks
 
-* [Ergogen](https://github.com/ergogen/ergogen)
-* [Absolem Club Discord](https://discord.gg/nbKcAZB)
-* [V4 Migration Guide](https://github.com/tsteffek/Ergogen-V4-Migration-Guide)
-* [Claw](https://gitlab.com/Audijo/keyboard)
-* [MrKeyboard](https://github.com/MrCarney/mrkeyboard)
-* [Corne keyboard](https://github.com/foostan/crkbd)
+* <a href="https://github.com/ergogen/ergogen" target="_blank">Ergogen</a>
+* <a href="https://discord.gg/nbKcAZB" target="_blank">Absolem Club Discord</a>
+* <a href="https://github.com/tsteffek/Ergogen-V4-Migration-Guide" target="_blank">V4 Migration Guide</a>
+* <a href="https://gitlab.com/Audijo/keyboard" target="_blank">Claw</a>
+* <a href="https://github.com/MrCarney/mrkeyboard" target="_blank">MrKeyboard</a>
+* <a href="https://github.com/foostan/crkbd" target="_blank">Corne keyboard</a>
+* <a href="https://github.com/zmkfirmware/zmk" target="_blank">ZMK</a>
+* <a href="https://github.com/manna-harbour/miryoku_zmk" target="_blank">Miryoku ZMK</a>

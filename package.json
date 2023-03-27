@@ -9,8 +9,11 @@
     "repository": "github:Narkoleptika/josukey",
     "bugs": "https://github.com/Narkoleptika/josukey/issues",
     "scripts": {
-        "build": "ergogen --clean -o ergogen/output ergogen",
-        "watch": "nodemon --ext .js,.yaml --watch footprints --watch config.yaml --exec npm run build"
+        "ergogen:build": "ergogen --clean -o ergogen/output ergogen",
+        "ergogen:watch": "nodemon --ext .js,.yaml --watch footprints --watch config.yaml --exec npm run ergogen:build",
+        "zmk:update": "docker compose -f zmk/docker-compose.yml run --rm firmware-env zmk-update",
+        "zmk:build": "docker compose -f zmk/docker-compose.yml run --rm firmware-env zmk-build",
+        "zmk:down": "docker compose -f zmk/docker-compose.yml down"
     },
     "dependencies": {
         "ergogen": "^4.0.2"

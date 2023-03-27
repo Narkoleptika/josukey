@@ -1,3 +1,4 @@
 node_modules
 ergogen/output
 ergogen/kicad/gerber
+zmk/build

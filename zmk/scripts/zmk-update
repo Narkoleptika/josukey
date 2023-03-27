@@ -1,0 +1,6 @@
+#!/bin/bash
+
+/usr/local/bin/zmk-init
+
+cd zmk
+west update
