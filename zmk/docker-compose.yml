@@ -1,0 +1,16 @@
+services:
+    firmware-env:
+        container_name: firmware-env
+        build: .
+        volumes:
+            - ./config:/zmk-config:ro
+            - ./build:/zmk-build
+            - zmk-root-user:/root
+            - zmk-zephyr:/zmk/zephyr
+            - zmk-zephyr-modules:/zmk/modules
+            - zmk-zephyr-tools:/zmk/tools
+volumes:
+    zmk-root-user:
+    zmk-zephyr:
+    zmk-zephyr-modules:
+    zmk-zephyr-tools:

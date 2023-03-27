@@ -1,0 +1,5 @@
+config SHIELD_JOSUKEY_LEFT
+    def_bool $(shields_list_contains, josukey_left)
+
+config SHIELD_JOSUKEY_RIGHT
+    def_bool $(shields_list_contains, josukey_right)

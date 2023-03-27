@@ -1,0 +1,12 @@
+file_format: "1"
+id: josukey
+name: Josukey
+type: shield
+url: https://github.com/Narkoleptika/josukey/
+requires: [pro_micro]
+features:
+    - keys
+    - underglow
+siblings:
+    - josukey_left
+    - josukey_right

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+/usr/local/bin/zmk-init
+
+cd /zmk/app
+
+west build -p -d build/left -b nice_nano_v2 -- -DSHIELD=josukey_left -DZMK_CONFIG=/zmk-config
+mv build/left/zephyr/zmk.uf2 /zmk-build/josukey-left.uf2
+
+west build -p -d build/right -b nice_nano_v2 -- -DSHIELD=josukey_right -DZMK_CONFIG=/zmk-config
+mv build/right/zephyr/zmk.uf2 /zmk-build/josukey-right.uf2
