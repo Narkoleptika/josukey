@@ -3,6 +3,7 @@
 A keyboard for Joey
 
 This is an ergogen based corne clone that I intend to modify and tweak as I descend into the rabbit hole
+
 <p align="center">
     <img src="./images/josukey.png" width="100%">
 </p>
@@ -28,7 +29,6 @@ npm i
 ```
 
 ## Ergogen
-
 
 ### Build
 
