@@ -182,6 +182,9 @@ outlines:
                 -   ref: thumb_outer_home
                     shift: [-0.6cx, 0.6cy]
 
+                -   ref: main_inner_bottom
+                    shift: [0.6cx, -0.4cy]
+
     _screws:
         -   &circle
             what: circle
@@ -266,6 +269,7 @@ outlines:
         -   what: outline
             name: _screws
             operation: subtract
+
     _pcb:
         -   what: outline
             name: _backplate_outline
@@ -275,6 +279,14 @@ outlines:
             operation: subtract
 
     preview:
+        -   what: outline
+            name: _backplate_outline
+            fillet: 2
+        -   what: outline
+            name: _keycap_outlines
+            operation: stack
+
+    full_preview:
         -   what: outline
             name: _backplate
         -   what: outline
