@@ -209,6 +209,24 @@ outlines:
                 ref: thumb_home_home
                 shift: [0.5cx, 0.5cy]
 
+    _controller_overlay_screws:
+        -   <<: *circle
+            adjust:
+            -   ref: main_inner_top
+                shift: [0.75cx, 0.25cy]
+        -   <<: *circle
+            adjust:
+            -   ref: main_inner_top
+                shift: [1.65cx, 0.25cy]
+        -   <<: *circle
+            adjust:
+            -   ref: thumb_outer_home
+                shift: [-0.48cx, 0.75cy]
+        -   <<: *circle
+            adjust:
+            -   ref: thumb_outer_home
+                shift: [0.42cx, 0.75cy]
+
     _spacers:
         -   &bigCircle
             <<: *circle
@@ -270,12 +288,23 @@ outlines:
             name: _screws
             operation: subtract
 
+    _controller_overlay:
+        -   what: outline
+            name: _backplate_additional_outline
+            fillet: 2
+        -   what: outline
+            name: _controller_overlay_screws
+            operation: subtract
+
     _pcb:
         -   what: outline
             name: _backplate_outline
             fillet: 2
         -   what: outline
             name: _spacers
+            operation: subtract
+        -   what: outline
+            name: _controller_overlay_screws
             operation: subtract
 
     preview:
@@ -300,6 +329,11 @@ outlines:
             adjust:
                 shift: [0, -90]
         -   what: outline
+            name: _controller_overlay
+            operation: stack
+            adjust:
+                shift: [120, -90]
+        -   what: outline
             name: _keycap_outlines
             operation: stack
             adjust:
@@ -312,6 +346,10 @@ cases:
     frontplate:
         -   what: outline
             name: _frontplate
+            extrude: 1.2
+    controller_overlay:
+        -   what: outline
+            name: _controller_overlay
             extrude: 1.2
 
 pcbs.josukey:
@@ -353,21 +391,21 @@ pcbs.josukey:
             where:
                 ref: main_inner_home
             adjust:
-                shift: [22, 6.5]
+                shift: [21.6, 4.5]
                 rotate: -90
         jst-s2b-ph-kl:
             what: jst-s2b-ph-kl
             where:
                 ref: main_inner_bottom
-                shift: [21, -2]
-                rotate: 180
+                shift: [14.25, 0.25]
+                rotate: 90
             params:
                 neg: GND
         pcm12:
             what: pcm12
             where:
                 ref: main_inner_bottom
-                shift: [30.5, 3]
+                shift: [30.5, 2]
                 rotate: 90
             params:
                 from: pos
@@ -376,7 +414,7 @@ pcbs.josukey:
             what: wuerth-434121025816
             where:
                 ref: main_inner_bottom
-                shift: [30, -6]
+                shift: [25.5, 2]
                 rotate: 90
             params:
                 r1: RST
@@ -415,7 +453,7 @@ pcbs.josukey:
             what: peace
             where:
                 ref: main_inner_bottom
-                shift: [13, -6]
+                shift: [15, -6]
             params:
                 scale: 2
         love:
