@@ -76,3 +76,4 @@ npm run zmk:down
 * <a href="https://github.com/foostan/crkbd" target="_blank">Corne keyboard</a>
 * <a href="https://github.com/zmkfirmware/zmk" target="_blank">ZMK</a>
 * <a href="https://github.com/manna-harbour/miryoku_zmk" target="_blank">Miryoku ZMK</a>
+* <a href="https://www.reddit.com/r/crkbd/comments/esv3i8/guide_corne_diy_kit/" target="_blank">Reddit post with information about screws and spacers</a>
