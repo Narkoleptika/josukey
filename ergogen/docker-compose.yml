@@ -1,0 +1,6 @@
+services:
+    autorouter:
+        image: soundmonster/freerouting_cli:latest
+        volumes:
+          - ./output/pcbs:/root/pcbs
+        command: java -jar /opt/freerouting_cli.jar -de /root/pcbs/josukey.dsn -do /root/pcbs/josukey.ses -ap 10 -fo -pp 3 -oit 0.2 -mt 8

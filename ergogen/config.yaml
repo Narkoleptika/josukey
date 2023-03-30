@@ -106,66 +106,6 @@ points:
                     rotate: -36
                     stagger: -9.2
 outlines:
-    _plate_outline:
-        -   what: polygon
-            points:
-                -   ref: thumb_outer_home
-                    shift: [0.6cx, 0.6cy]
-                -   ref: thumb_outer_home
-                    shift: [0.6cx, -0.6cy]
-                -   ref: thumb_outer_home
-                    shift: [-0.4cx, -0.6cy]
-
-                -   ref: thumb_home_home
-                    shift: [0.4cx, -0.6cy]
-                -   ref: thumb_home_home
-                    shift: [-0.4cx, -0.6cy]
-
-                -   ref: thumb_inner_home
-                    shift: [0.4cx, -0.6cy]
-                -   ref: thumb_inner_home
-                    shift: [-0.6cx, -0.6cy]
-
-                -   ref: main_pinky_bottom
-                    shift: [1.6cx, -0.6cy]
-                -   ref: main_pinky_bottom
-                    shift: [0.6cx, -0.6cy]
-                -   ref: main_pinky_bottom
-                    shift: [-0.6cx, -0.6cy]
-
-                -   ref: main_pinky_top
-                    shift: [-0.6cx, 0.6cy]
-                -   ref: main_pinky_top
-                    shift: [0.4cx, 0.6cy]
-
-                -   ref: main_ring_top
-                    shift: [-0.5cx, 0.6cy]
-                -   ref: main_ring_top
-                    shift: [0.4cx, 0.6cy]
-
-                -   ref: main_middle_top
-                    shift: [-0.4cx, 0.61cy]
-                -   ref: main_middle_top
-                    shift: [0.4cx, 0.6cy]
-
-                -   ref: main_index_top
-                    shift: [-0.4cx, 0.6cy]
-                -   ref: main_index_top
-                    shift: [0.5cx, 0.6cy]
-
-                -   ref: main_inner_top
-                    shift: [-0.4cx, 0.6cy]
-                -   ref: main_inner_top
-                    shift: [0.5cx, 0.6cy]
-                -   ref: main_inner_top
-                    shift: [0.6cx, 0.4cy]
-
-                -   ref: main_inner_bottom
-                    shift: [0.6cx, -0.4cy]
-
-                -   ref: thumb_outer_home
-                    shift: [-0.6cx, 0.6cy]
-
     _backplate_additional_outline:
         -   what: polygon
             points:
@@ -184,6 +124,24 @@ outlines:
 
                 -   ref: main_inner_bottom
                     shift: [0.6cx, -0.4cy]
+
+    _plate_outline:
+        -   what: rectangle
+            where: true
+            size: [cx + 3.6, cy + 3.4]
+        -   what: polygon
+            points:
+                -   ref: main_inner_bottom
+                    shift: [0.6cx, 0.6cy]
+                -   ref: thumb_outer_home
+                    shift: [0.6cx, 0.6cy]
+                -   ref: main_pinky_bottom
+                    shift: [0cx, -0.5cy]
+            operation: add
+        -   what: outline
+            name: _backplate_additional_outline
+            operation: subtract
+
 
     _screws:
         -   &circle
