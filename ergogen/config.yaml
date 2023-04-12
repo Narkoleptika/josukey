@@ -110,9 +110,9 @@ outlines:
         -   what: polygon
             points:
                 -   ref: main_inner_top
-                    shift: [0.6cx, 0.4cy]
+                    shift: [0.6cx, 0.6cy]
                 -   ref: main_inner_top
-                    shift: [1.8cx, 0.4cy]
+                    shift: [1.8cx, 0.6cy]
 
                 -   ref: main_inner_bottom
                     shift: [1.8cx, -0.6cy]
@@ -124,6 +124,20 @@ outlines:
 
                 -   ref: main_inner_bottom
                     shift: [0.6cx, -0.4cy]
+    _top_circle:
+        -   what: circle
+            radius: 200
+        -   what: rectangle
+            size: [400, 400]
+            adjust:
+                shift: [0, -10]
+            operation: subtract
+        -   what: rectangle
+            size: [25, 25]
+            adjust:
+                shift: [-62.3, 190]
+            operation: subtract
+
 
     _plate_outline:
         -   what: rectangle
@@ -135,8 +149,30 @@ outlines:
                     shift: [0.6cx, 0.6cy]
                 -   ref: thumb_outer_home
                     shift: [0.6cx, 0.6cy]
+                -   ref: thumb_inner_home
+                    shift: [-0.6cx, -0.6cy]
                 -   ref: main_pinky_bottom
-                    shift: [0cx, -0.5cy]
+                    shift: [-0.6cx, -0.6cy]
+            operation: add
+        -   what: circle
+            radius: 60
+            adjust:
+                shift: [-6, -70]
+            operation: subtract
+        -   what: circle
+            radius: 60
+            adjust:
+                shift: [0, -70]
+            operation: subtract
+        -   what: circle
+            radius: 60
+            adjust:
+                shift: [43, -82]
+            operation: subtract
+        -   what: outline
+            name: _top_circle
+            adjust:
+                shift: [39, -149]
             operation: add
         -   what: outline
             name: _backplate_additional_outline
@@ -171,11 +207,11 @@ outlines:
         -   <<: *circle
             adjust:
             -   ref: main_inner_top
-                shift: [0.75cx, 0.25cy]
+                shift: [0.75cx, 0.45cy]
         -   <<: *circle
             adjust:
             -   ref: main_inner_top
-                shift: [1.65cx, 0.25cy]
+                shift: [1.65cx, 0.45cy]
         -   <<: *circle
             adjust:
             -   ref: thumb_outer_home
@@ -267,48 +303,57 @@ outlines:
 
     preview:
         -   what: outline
-            name: _backplate_outline
-            fillet: 2
-        -   what: outline
-            name: _keycap_outlines
-            operation: stack
-
-    full_preview:
-        -   what: outline
             name: _backplate
         -   what: outline
             name: _pcb
             operation: stack
             adjust:
-                shift: [120, 0]
+                shift: [0.01, 0]
         -   what: outline
             name: _frontplate
             operation: stack
             adjust:
-                shift: [0, -90]
+                shift: [0, 0.01]
         -   what: outline
             name: _controller_overlay
             operation: stack
             adjust:
-                shift: [120, -90]
+                shift: [0.01, 0.01]
         -   what: outline
             name: _keycap_outlines
             operation: stack
             adjust:
-                shift: [120, -90]
+                shift: [0, 0.01]
 cases:
     backplate:
-        -   what: outline
+        -   &backplate
+            what: outline
             name: _backplate
             extrude: 1.2
     frontplate:
-        -   what: outline
+        -   &frontplate
+            what: outline
             name: _frontplate
             extrude: 1.2
     controller_overlay:
-        -   what: outline
+        -   &controller_overlay
+            what: outline
             name: _controller_overlay
             extrude: 1.2
+
+    front_back:
+        -   <<: *backplate
+            rotate: [0, 0, 180]
+        -   <<: *frontplate
+            shift: [0, -91, 0]
+
+    all:
+        -   <<: *backplate
+            rotate: [0, 0, 180]
+        -   <<: *frontplate
+            shift: [0, -91, 0]
+        -   <<: *controller_overlay
+            shift: [2, -91, 0]
 
 pcbs.josukey:
     outlines:
@@ -321,7 +366,7 @@ pcbs.josukey:
             what: sk6812mini
             where: true
             adjust:
-                shift: [0, -5]
+                shift: [0, -5.5]
             params:
                 din: "{{led_in}}"
                 dout: "{{led_out}}"
@@ -333,7 +378,7 @@ pcbs.josukey:
                 from: "{{name}}"
                 to: "{{row_net}}"
             adjust:
-                shift: [ -7.6, -1.6 ]
+                shift: [-7.6, -1.4]
                 rotate: 90
         choc:
             what: choc
@@ -349,13 +394,13 @@ pcbs.josukey:
             where:
                 ref: main_inner_home
             adjust:
-                shift: [21.6, 4.5]
+                shift: [21.6, 7.5]
                 rotate: -90
         jst-s2b-ph-kl:
             what: jst-s2b-ph-kl
             where:
                 ref: main_inner_bottom
-                shift: [14.25, 0.25]
+                shift: [14.25, 2.25]
                 rotate: 90
             params:
                 neg: GND
@@ -363,7 +408,7 @@ pcbs.josukey:
             what: pcm12
             where:
                 ref: main_inner_bottom
-                shift: [30.5, 2]
+                shift: [30.5, 4]
                 rotate: 90
             params:
                 from: pos
@@ -372,7 +417,7 @@ pcbs.josukey:
             what: wuerth-434121025816
             where:
                 ref: main_inner_bottom
-                shift: [25.5, 2]
+                shift: [25.5, 4]
                 rotate: 90
             params:
                 r1: RST
@@ -381,39 +426,40 @@ pcbs.josukey:
             what: text
             where: &textWhere
                 ref: main_pinky_bottom
-                shift: [12, -7]
+                shift: [18, -10]
+                rotate: -16
             params: &textParams
-                text: Josukey\nA keyboard for Joey
-                justify: left
+                text: Josukey
+                h_size: 2
+                v_size: 2
         back_text:
             <<: *text
             where:
                 <<: *textWhere
-                shift: [27, -7]
             params:
                 <<: *textParams
                 layer: B.SilkS
-                justify: left mirror
+                justify: mirror
         safeText:
             <<: *text
             what: keepout
             params:
                 points:
-                    -   x: -0.5
+                    -   x: -6
                         y: -2
-                    -   x: 15.5
+                    -   x: 6
                         y: -2
-                    -   x: 15.5
+                    -   x: 6
                         y: 2
-                    -   x: -0.5
+                    -   x: -6
                         y: 2
         peace: &icon
             what: peace
             where:
                 ref: main_inner_bottom
-                shift: [15, -6]
+                shift: [14, -3]
             params:
-                scale: 2
+                scale: 2.5
         love:
             <<: *icon
             what: love
@@ -424,9 +470,9 @@ pcbs.josukey:
                 points:
                     -   x: -0.5
                         y: -0.5
-                    -   x: 13.25
+                    -   x: 16.5
                         y: -0.5
-                    -   x: 13.25
-                        y: 13.25
+                    -   x: 16.5
+                        y: 16.5
                     -   x: -0.5
-                        y: 13.25
+                        y: 16.5
