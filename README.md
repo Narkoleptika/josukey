@@ -8,6 +8,12 @@ This is an ergogen based corne clone that I intend to modify and tweak as I desc
     <img src="./images/josukey.png" width="100%">
 </p>
 
+## V1
+
+<p align="center">
+    <img src="./images/v1.jpg" width="100%">
+</p>
+
 ## Prerequisites
 
 * Node
