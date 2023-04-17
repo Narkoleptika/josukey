@@ -9,7 +9,7 @@
     "repository": "github:Narkoleptika/josukey",
     "bugs": "https://github.com/Narkoleptika/josukey/issues",
     "scripts": {
-        "build": "ergogen --clean .",
+        "build": "ergogen --clean -o ergogen/output ergogen",
         "watch": "nodemon --ext .js,.yaml --watch footprints --watch config.yaml --exec npm run build"
     },
     "dependencies": {
